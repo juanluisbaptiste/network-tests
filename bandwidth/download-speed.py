@@ -46,7 +46,7 @@ def parse_option():
 def get_download_url(location=DEFAULT_LOCATION):
     return locations.get(location)
 
-def downloadFile(url, directory) :
+def download_file(url, directory) :
   localFilename = url.split('/')[-1]
   global VERBOSE
   with open(directory + '/' + localFilename, 'wb') as f:
@@ -122,7 +122,7 @@ def main():
     n = 0
     while (n < num_tests):
        verboseprint ('Test #' + str(n + 1) + ': ')
-       avr_speed = downloadFile(url, "/tmp")
+       avr_speed = download_file(url, "/tmp")
        print
        verboseprint("\nAverage download speed: " + str(round(avr_speed,2)) + "MB/s\n")
        n += 1
