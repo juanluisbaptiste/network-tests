@@ -116,7 +116,7 @@ def main():
     else:
         url = options.url
     verboseprint('URL: ' + url)
-    num_tests = int(options.count) or DEFAULT_DOWNLOAD_COUNT
+    num_tests = int(options.count or DEFAULT_DOWNLOAD_COUNT)
     verboseprint('Total Tests: ' + str(num_tests))
     print
     n = 0
