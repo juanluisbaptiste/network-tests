@@ -27,6 +27,7 @@ locations = {
              'usw': 'http://speedtest.fremont.linode.com/100MB-fremont.bin',
              'washington': 'http://speedtest.wdc01.softlayer.com/downloads/test500.zip'
              }
+localFilename = ""
 
 def parse_option():
     parser = argparse.ArgumentParser()
@@ -47,8 +48,10 @@ def get_download_url(location=DEFAULT_LOCATION):
     return locations.get(location)
 
 def download_file(url, directory) :
-  localFilename = url.split('/')[-1]
+  global localFilename
   global VERBOSE
+
+  localFilename = url.split('/')[-1]
   with open(directory + '/' + localFilename, 'wb') as f:
     dl = 0
     dl_speed = 0
