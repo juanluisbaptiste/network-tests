@@ -16,6 +16,8 @@ import sys
 import time
 
 DEFAULT_LOCATION = "use"
+VERBOSE = False
+
 locations = {
              'london': 'http://speedtest.london.linode.com/100MB-london.bin',
              'sanjose': 'http://speedtest.sjc01.softlayer.com/speedtest/speedtest/random500x500.jpg' ,
@@ -24,7 +26,6 @@ locations = {
              'usw': 'http://speedtest.fremont.linode.com/100MB-fremont.bin',
              'washington': 'http://speedtest.wdc01.softlayer.com/downloads/test500.zip'
              }
-VERBOSE = False
 
 def parse_option():
     parser = argparse.ArgumentParser()
@@ -42,6 +43,7 @@ def get_download_url(location=DEFAULT_LOCATION):
 
 def downloadFile(url, directory) :
   localFilename = url.split('/')[-1]
+  global VERBOSE
   with open(directory + '/' + localFilename, 'wb') as f:
     dl = 0
     dl_speed = 0
@@ -85,6 +87,7 @@ def csv_parser(results, csv_file):
 
 def main():
     options = parse_option()
+    global VERBOSE
     VERBOSE = options.verbose
     if VERBOSE:
         def verboseprint(*args):
