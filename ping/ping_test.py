@@ -9,6 +9,7 @@ from __future__ import print_function
 
 import argparse
 import os
+import signal
 import sys
 import pingparsing
 import ping_parsers
@@ -28,6 +29,11 @@ def parse_option():
         "-I", dest="interface", help="Network interface to use for pinging")
 
     return parser.parse_args()
+
+def signal_handler(signal, frame):
+        print ('\n\nTest cancelled!\n')
+        sys.exit(0)
+signal.signal(signal.SIGINT, signal_handler)
 
 def main():
     options = parse_option()
