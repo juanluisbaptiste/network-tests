@@ -59,7 +59,7 @@ def downloadFile(url, directory) :
         dl_speed = dl/(time.clock() - start)
         #Convert to MB/s when printing
         if VERBOSE:
-          print "\r[%s%s] %s MB/s" % ('=' * done, ' ' * (50-done), dl_speed/8000000)
+          sys.stdout.write("\r[%s%s] %s MB/s" % ('=' * done, ' ' * (50-done), round(dl_speed/8000000,2)))
       time_elapsed = (time.clock() - start)
       avr_speed = (dl/time_elapsed)/8000000
 
