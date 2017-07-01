@@ -12,6 +12,7 @@
 import argparse
 import os
 import requests
+import signal
 import sys
 import time
 
@@ -92,12 +93,11 @@ def csv_parser(results, csv_file):
             print (result[0])
             print_ping_parser(result[1])
 
-# def verboseprint(*args):
-#     # Print each argument separately so caller doesn't need to
-#     # stuff everything to be printed into a single string
-#     for arg in args:
-#        print arg,
-#     print
+def signal_handler(signal, frame):
+        print '\n\nTest cancelled!\n'
+        cleanup()
+        sys.exit(0)
+signal.signal(signal.SIGINT, signal_handler)
 
 def main():
     options = parse_option()
