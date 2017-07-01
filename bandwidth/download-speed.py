@@ -16,6 +16,7 @@ import sys
 import time
 
 DEFAULT_LOCATION = "use"
+DEFAULT_DOWNLOAD_COUNT = 1
 VERBOSE = False
 
 locations = {
@@ -29,6 +30,8 @@ locations = {
 
 def parse_option():
     parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "-c", "--count", required=False, help="Number of downloads to do. Default: " + str(DEFAULT_DOWNLOAD_COUNT))
     parser.add_argument(
         "-l", "--location", required=False, help="Server location for the test. Default: " + str(DEFAULT_LOCATION), choices=locations)
     parser.add_argument(
@@ -105,9 +108,19 @@ def main():
     verboseprint('Location: ' + location)
     url = get_download_url(location)
     verboseprint('URL: ' + url)
-    avr_speed = downloadFile(url, "/tmp")
-    verboseprint("Average download speed: " + str(avr_speed) + "MB/s")
-    csv_file = os.path.join(scriptDir, options.outfile)
+    num_tests = int(options.count) or DEFAULT_DOWNLOAD_COUNT
+    verboseprint('Total Tests: ' + str(num_tests))
+    print
+    n = 0
+    while (n < num_tests):
+       verboseprint ('Test #' + str(n + 1) + ': ')
+       avr_speed = downloadFile(url, "/tmp")
+       print
+       verboseprint("\nAverage download speed: " + str(round(avr_speed,2)) + "MB/s\n")
+       n += 1
 
+    print
+    print options.outfile
+    #csv_file = os.path.join(scriptDir, options.outfile)
 if __name__ == "__main__":
     sys.exit(main())
