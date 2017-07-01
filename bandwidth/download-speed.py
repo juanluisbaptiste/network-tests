@@ -70,10 +70,13 @@ def download_file(url, directory) :
           sys.stdout.flush()
       time_elapsed = (time.clock() - start)
       avr_speed = (dl/time_elapsed)/8000000
+      cleanup()
+  return avr_speed
+
+def cleanup():
   #Cleanup
   os.remove("/tmp/" + localFilename)
 
-  return avr_speed
 
 def csv_parser(results, csv_file):
     with open(csv_file, 'wb') as myfile:
