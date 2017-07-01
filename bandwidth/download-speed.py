@@ -38,6 +38,8 @@ def parse_option():
         "-o", "--outfile", required=False, help="Destination file for test results in CSV format")
     parser.add_argument(
         "-v", "--verbose", action="store_true", help="Print verbose output from the download process")
+    parser.add_argument(
+        "-u", "--url", required=False, help="Alternate download URL (it must include path and filename)")
 
     return parser.parse_args()
 
@@ -105,8 +107,11 @@ def main():
     location = options.location or DEFAULT_LOCATION
     scriptDir = sys.path[0]
 
-    verboseprint('Location: ' + location)
-    url = get_download_url(location)
+    if not options.url:
+        verboseprint('Location: ' + location)
+        url = get_download_url(location)
+    else:
+        url = options.url
     verboseprint('URL: ' + url)
     num_tests = int(options.count) or DEFAULT_DOWNLOAD_COUNT
     verboseprint('Total Tests: ' + str(num_tests))
