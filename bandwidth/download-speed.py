@@ -70,6 +70,8 @@ def downloadFile(url, directory) :
           sys.stdout.flush()
       time_elapsed = (time.clock() - start)
       avr_speed = (dl/time_elapsed)/8000000
+  #Cleanup
+  os.remove("/tmp/" + localFilename)
 
   return avr_speed
 
