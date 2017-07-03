@@ -57,7 +57,7 @@ class DownloadTester():
               sys.stdout.flush()
           time_elapsed = (time.clock() - start)
           avr_speed = (dl/time_elapsed)/8000000
-          self.cleanup(self.localFilename)
+          self.cleanup()
           results = (avr_speed,time_elapsed, "100MB")
       return results
 
