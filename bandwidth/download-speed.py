@@ -16,6 +16,8 @@ import sys
 
 import downloadtester
 
+tester = downloadtester.DownloadTester()
+
 def parse_option():
     parser = argparse.ArgumentParser()
     parser.add_argument(
@@ -33,7 +35,6 @@ def parse_option():
 
 def signal_handler(signal, frame):
         print '\n\nTest cancelled!\n'
-        tester = downloadtester.DownloadTester(downloader.DownloadTester.get_local_filename(url))
         tester.cleanup()
         sys.exit(0)
 signal.signal(signal.SIGINT, signal_handler)
@@ -41,7 +42,6 @@ signal.signal(signal.SIGINT, signal_handler)
 def main():
     options = parse_option()
     #global functions.VERBOSE
-    tester = downloadtester.DownloadTester()
     tester.VERBOSE = options.verbose
 
     if options.verbose:
