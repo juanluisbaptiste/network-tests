@@ -25,7 +25,7 @@ class DownloadTester():
                  'washington': 'http://speedtest.wdc01.softlayer.com/downloads/test500.zip'
                  }
 
-    def get_download_url(self, location=None):
+    def get_location(self, location=None):
         if location is None:
             location = self.DEFAULT_LOCATION
         return self.locations.get(location)

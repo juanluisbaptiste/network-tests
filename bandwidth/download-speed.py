@@ -61,7 +61,7 @@ def main():
     #Overwrite with custom URL
     if not options.url:
         verboseprint('Location: ' + location)
-        url = tester.get_download_url(location)
+        url = tester.get_location(location)
     else:
         url = options.url
     verboseprint('URL: ' + url)
