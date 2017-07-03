@@ -30,8 +30,8 @@ class DownloadTester():
             location = self.DEFAULT_LOCATION
         return self.locations.get(location)
 
-    def get_local_filename(self, url);
-        return localFilename = url.split('/')[-1]
+    def get_local_filename(self, url):
+        return url.split('/')[-1]
 
     def download_file(self, url) :
 
