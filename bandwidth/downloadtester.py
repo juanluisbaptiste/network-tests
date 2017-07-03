@@ -57,13 +57,13 @@ class DownloadTester():
               sys.stdout.flush()
           time_elapsed = (time.clock() - start)
           avr_speed = (dl/time_elapsed)/8000000
-          self.cleanup(localFilename)
+          self.cleanup(self.localFilename)
           results = (avr_speed,time_elapsed, "100MB")
       return results
 
-    def cleanup(self, localFilename):
+    def cleanup(self):
       #Cleanup
-      os.remove("/tmp/" + localFilename)
+      os.remove("/tmp/" + self.localFilename)
 
 
     def csv_parser(self, results, csv_file):
