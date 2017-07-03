@@ -35,8 +35,8 @@ class DownloadTester():
 
     def download_file(self, url) :
 
-      self.localFilename = localFilename
-      with open('/tmp/' + localFilename, 'wb') as f:
+      self.localFilename = self.get_local_filename(url)
+      with open('/tmp/' + self.localFilename, 'wb') as f:
         dl = 0
         dl_speed = 0
         start = time.clock()
