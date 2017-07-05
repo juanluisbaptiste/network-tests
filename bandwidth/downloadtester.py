@@ -74,6 +74,6 @@ class DownloadTester():
             wr.writerow(header)
             n = 1
             for result in results:
-                row = [n,result[2],round(result[0])]
+                row = [n,result[2]/1024/1024,round(result[0])]
                 wr.writerow(row)
                 n += 1
