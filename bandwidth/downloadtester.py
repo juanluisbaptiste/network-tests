@@ -50,15 +50,16 @@ class DownloadTester():
             dl += len(chunk)
             f.write(chunk)
             done = int(50 * dl / int(total_length))
-            dl_speed = dl/(time.clock() - start)
+            time_elapsed = (time.clock() - start)
+            dl_speed = dl/time_elapsed
+
             #Convert to MB/s when printing
             if self.VERBOSE:
               sys.stdout.write("\r[%s%s] %s MB/s" % ('=' * done, ' ' * (50-done), round(dl_speed/8000000,2)))
               sys.stdout.flush()
-          time_elapsed = (time.clock() - start)
           avr_speed = (dl/time_elapsed)/8000000
           self.cleanup()
-          results = (avr_speed,time_elapsed, "100MB")
+          results = (avr_speed,time_elapsed, dl)
       return results
 
     def cleanup(self):
