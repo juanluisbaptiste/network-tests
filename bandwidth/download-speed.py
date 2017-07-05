@@ -77,6 +77,7 @@ def main():
        result = tester.download_file(url)
        results.append(result)
        print
+       verboseprint("Downloaded file size: " + str(result[2]/1024/1024) + "MB")
        verboseprint("\nAverage download speed: " + str(round(result[0],2)) + "MB/s\n")
        n += 1
 
