@@ -21,9 +21,9 @@ tester = downloadtester.DownloadTester()
 def parse_option():
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "-c", "--count", required=False, help="Number of downloads to do. Default: " + str(downloadtester.DownloadTester.DEFAULT_DOWNLOAD_COUNT))
+        "-c", "--count", required=False, help="Number of downloads to do. Default: " + str(tester.DEFAULT_DOWNLOAD_COUNT))
     parser.add_argument(
-        "-l", "--location", required=False, help="Server location for the test. Default: " + str(downloadtester.DownloadTester.DEFAULT_LOCATION), choices=downloadtester.DownloadTester.locations)
+        "-l", "--location", required=False, help="Server location for the test. Default: " + str(tester.DEFAULT_LOCATION), choices=tester.locations)
     parser.add_argument(
         "-o", "--outfile", required=False, help="Destination file for test results in CSV format")
     parser.add_argument(
