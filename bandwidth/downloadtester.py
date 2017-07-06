@@ -52,14 +52,15 @@ class DownloadTester():
             done = int(50 * dl / int(total_length))
             time_elapsed = (time.clock() - start)
             dl_speed = dl/time_elapsed
+            avr_speed = (dl_speed)/8000000
+            avr_speed_mbps = (dl_speed)/1000000
 
             #Convert to MB/s when printing
             if self.VERBOSE:
-              sys.stdout.write("\r[%s%s] %s MB/s" % ('=' * done, ' ' * (50-done), round(dl_speed/8000000,2)))
+              sys.stdout.write("\r[%s%s] %s MB/s - %s Mbps" % ('=' * done, ' ' * (50-done), round(avr_speed,2), round(avr_speed_mbps,2)))
               sys.stdout.flush()
-          avr_speed = (dl/time_elapsed)/8000000
           self.cleanup()
-          results = (avr_speed,time_elapsed, dl)
+          results = (avr_speed,avr_speed_mbps,time_elapsed, dl)
       return results
 
     def cleanup(self):
@@ -70,10 +71,12 @@ class DownloadTester():
     def csv_parser(self, results, csv_file):
         with open(csv_file, 'wb') as myfile:
             wr = csv.writer(myfile)
-            header = ["Muestra", "Tamaño", "Velocidad Promedio (MB/sec)"]
+            header = ["Muestra", "Tamaño", "Velocidad Promedio (MB/sec)", "Ancho de Banda (Mbps)"]
             wr.writerow(header)
             n = 1
             for result in results:
-                row = [n,result[2]/1024/1024,round(result[0])]
+                #convert file size to MB
+                size = result[3]/1024/1024
+                row = [n,size,round(result[0],2),round(result[1],2)]
                 wr.writerow(row)
                 n += 1
