@@ -24,7 +24,7 @@ def parse_option():
     parser.add_argument(
         "-f", "--pingfile", required=True, help="List of hosts to ping")
     parser.add_argument(
-        "-o", "--outfile", required=True, help="Destination file for ping results")
+        "-o", "--outfile", required=False, help="Destination file for ping results")
     parser.add_argument(
         "-I", dest="interface", help="Network interface to use for pinging")
 
