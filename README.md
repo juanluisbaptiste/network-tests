@@ -5,7 +5,7 @@ Collection of python scripts to do network tests like download/upload speeds, ne
 
 See the README file on each folder for usage instructions.
 
-### [Measure latency](https://github.com/juanluisbaptiste/network-tests/tree/master/ing/README.md)
+### [Measure latency](https://github.com/juanluisbaptiste/network-tests/tree/master/ping/README.md)
 
 #### ping-test.py
 
