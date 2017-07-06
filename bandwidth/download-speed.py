@@ -27,7 +27,7 @@ def parse_option():
     parser.add_argument(
         "-o", "--outfile", required=False, help="Destination file for test results in CSV format")
     parser.add_argument(
-        "-v", "--verbose", action="store_true", help="Print verbose output from the download process")
+        "-s", "--silent", action="store_true", help="Don't print verbose output from the download process")
     parser.add_argument(
         "-u", "--url", required=False, help="Alternate download URL (it must include path and filename)")
 
@@ -42,9 +42,10 @@ signal.signal(signal.SIGINT, signal_handler)
 def main():
     options = parse_option()
     #global functions.VERBOSE
-    tester.VERBOSE = options.verbose
+    if options.silent:
+        tester.VERBOSE = False
 
-    if options.verbose:
+    if not options.silent:
         def verboseprint(*args):
             # Print each argument separately so caller doesn't need to
             # stuff everything to be printed into a single string

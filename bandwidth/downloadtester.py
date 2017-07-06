@@ -14,7 +14,7 @@ import time
 class DownloadTester():
     DEFAULT_LOCATION = "use"
     DEFAULT_DOWNLOAD_COUNT = 1
-    VERBOSE = False
+    VERBOSE = True
     localFilename = "100MB-newark.bin"
     locations = {
                  'london': 'http://speedtest.london.linode.com/100MB-london.bin',
