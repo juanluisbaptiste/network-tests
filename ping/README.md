@@ -10,7 +10,6 @@ This script has the following feautures:
 - Toggle FTP passive mode.
 
 ## Required Python Modules
-- csv
 - pingparsing
 
 ### Usage
