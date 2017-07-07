@@ -15,6 +15,7 @@ Measure the download speed by downloading an HTTP test file from a predefined li
 #### Required Python Modules
 
 - requests
+- statistics
 
 ### Usage
 
@@ -63,6 +64,7 @@ Measure the upload speed by uploading a file to an FTP server. Optionally with t
 #### Required Python Modules
 
 - datetime
+- statistics
 
 ### usage
 

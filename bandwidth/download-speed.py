@@ -15,6 +15,7 @@ import signal
 import sys
 
 import downloadtester
+import csv_parser
 
 tester = downloadtester.DownloadTester()
 
@@ -86,7 +87,7 @@ def main():
     #Create csv with test results
     if options.outfile:
         csv_file = os.path.join(scriptDir, options.outfile)
-        tester.csv_parser(results,csv_file)
+        csv_parser.csv_parser(results,csv_file)
 
 if __name__ == "__main__":
     sys.exit(main())
