@@ -45,18 +45,15 @@ signal.signal(signal.SIGINT, signal_handler)
 
 def main():
     options = parse_option()
-    #global functions.VERBOSE
     tester.VERBOSE = options.verbose
     tester.host = options.host
     tester.username = options.username
     tester.password = options.password
     filesize = float(os.path.getsize(options.uploadfile))
+    scriptDir = sys.path[0]
 
     if options.passive == "yes":
         tester.passive = True
-
-    scriptDir = sys.path[0]
-
     if options.verbose:
         def verboseprint(*args):
             # Print each argument separately so caller doesn't need to
