@@ -28,8 +28,9 @@ class UploadTester():
 
     def cleanup(self):
         try:
+            self.__ftp.delete(self.__filename)
             self.__ftp.quit()
-        except ftplib.error_temp, ftplib.error_reply:
+        except (ftplib.error_temp, ftplib.error_perm, ftplib.error_reply):
             pass
         self.__ftp.close()
 
