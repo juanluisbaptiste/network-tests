@@ -78,8 +78,8 @@ def main():
        result = tester.download_file(url)
        results.append(result)
        print
-       verboseprint("Downloaded file size: " + str(result[3]/1024/1024) + "MB")
-       verboseprint("\nAverage download speed: " + str(round(result[0],2)) + "MB/s\n")
+       verboseprint("Downloaded file size: " + str(result[3]/1024/1024) + " MB")
+       verboseprint("\nAverage download speed: " + str(round(result[0],2)) + " MB/s - " + str(round(result[1],2)) + " Mbps\n")
        n += 1
 
     print
