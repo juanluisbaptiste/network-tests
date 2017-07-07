@@ -90,6 +90,8 @@ def main():
     if options.outfile:
         csv_file = os.path.join(scriptDir, options.outfile)
         csv_parser.csv_parser(results,csv_file)
+    #Cleanup everything
+    tester.cleanup()
 
 if __name__ == "__main__":
     sys.exit(main())

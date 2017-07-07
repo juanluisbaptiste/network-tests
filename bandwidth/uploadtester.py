@@ -74,14 +74,3 @@ class UploadTester():
             sys.stdout.write("\r[%s%s] %s MB/s - %s Mbps" % ('=' * done, ' ' * (50-done), round(avr_speed,2), round(avr_speed_mbps,2)))
             sys.stdout.flush()
 
-    def csv_parser(self, results, csv_file):
-        with open(csv_file, 'wb') as myfile:
-            wr = csv.writer(myfile)
-            #TODO: Add date of test and test info to file
-            header = ["Sample#", "File Size", "Average Speed (MB/sec)", "Average Throughput (Mbps)"]
-            wr.writerow(header)
-            n = 1
-            for result in results:
-                row = [n,result[2],round(result[0])]
-                wr.writerow(row)
-                n += 1
