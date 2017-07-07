@@ -33,8 +33,14 @@ def parse_option():
 
     return parser.parse_args()
 
+def file_len(fname):
+    with open(fname) as f:
+        for i, l in enumerate(f):
+            pass
+    return i + 1
+
 def signal_handler(signal, frame):
-        print ('\n\nTest cancelled!\n')
+        print ("\n\nTest cancelled!\n")
         sys.exit(0)
 signal.signal(signal.SIGINT, signal_handler)
 
