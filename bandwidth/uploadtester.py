@@ -74,6 +74,7 @@ class UploadTester():
     def csv_parser(self, results, csv_file):
         with open(csv_file, 'wb') as myfile:
             wr = csv.writer(myfile)
+            #TODO: Add date of test and test info to file
             header = ["Muestra", "Tamaño", "Velocidad Promedio (MB/sec)"]
             wr.writerow(header)
             n = 1
