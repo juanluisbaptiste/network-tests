@@ -65,17 +65,3 @@ class DownloadTester():
     def cleanup(self):
       #Cleanup
       os.remove("/tmp/" + self.localFilename)
-
-
-    def csv_parser(self, results, csv_file):
-        with open(csv_file, 'wb') as myfile:
-            wr = csv.writer(myfile)
-            header = ["Sample#", "File Size", "Average Speed (MB/sec)", "Average Throughput (Mbps)"]
-            wr.writerow(header)
-            n = 1
-            for result in results:
-                #convert file size to MB
-                size = result[3]/1024/1024
-                row = [n,size,round(result[0],2),round(result[1],2)]
-                wr.writerow(row)
-                n += 1
