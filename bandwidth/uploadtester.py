@@ -37,6 +37,7 @@ class UploadTester():
     def upload_file(self, upload_file) :
         chunk_size = 8192
         dl_speed = 0
+        self.__sizeWritten = 0
 
         self.__ftp.connect(self.host,21)
         try:
