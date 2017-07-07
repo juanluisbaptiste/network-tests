@@ -17,8 +17,8 @@ class UploadTester():
     DEFAULT_UPLOAD_COUNT = 1
     VERBOSE = False
     host = ""
-    username = "trapenses"
-    password = "Tr4p3ns3s20!6"
+    username = ""
+    password = ""
     passive = False
 
     __sizeWritten = 0
