@@ -2,3 +2,7 @@
 *.csv
 *.txt
 csv
+dist
+build
+doc-pak
+description-pak
