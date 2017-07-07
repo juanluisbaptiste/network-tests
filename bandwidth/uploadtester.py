@@ -23,6 +23,7 @@ class UploadTester():
 
     __sizeWritten = 0
     __filesize = 0
+    __filename = ""
     __start = 0
     __ftp = ftplib.FTP()
 
@@ -34,6 +35,9 @@ class UploadTester():
         self.__ftp.close()
 
     def upload_file(self, upload_file) :
+        chunk_size = 8192
+        dl_speed = 0
+
         self.__ftp.connect(self.host,21)
         try:
             self.__ftp.login(self.username, self.password)
