@@ -17,8 +17,6 @@ def csv_ping_parser(results, csv_file):
         for result in results:
             row = [result[1].packet_loss_count,result[1].packet_loss_rate,result[1].rtt_min,result[1].rtt_max,result[1].rtt_avg,result[0]]
             wr.writerow(row)
-            print (result[0])
-            print_ping_parser(result[1])
 
 def print_ping_parser(ping_parser):
     print("packet_transmit: {:d} packets".format(ping_parser.packet_transmit))
