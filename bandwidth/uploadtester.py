@@ -50,29 +50,29 @@ class UploadTester():
         #Set passive mode
         self.__ftp.set_pasv(self.passive)
         self.__filesize = os.path.getsize(upload_file)
-        dl_speed = 0
-        self.__start = time.clock()
+        #self.__start = time.clock()
+        self.__start = time.mktime(time.localtime())
         file = open(upload_file, 'rb')
-        filename = ntpath.basename(upload_file)
-        self.__ftp.storbinary('STOR ' + filename, file, 1024, self.print_progress)
-        time_elapsed = (time.clock() - self.__start)
+        self.__filename = ntpath.basename(upload_file)
+        #Sleep one second to guarantee there's a time difference
+        self.__ftp.storbinary('STOR ' + self.__filename, file, chunk_size, self.print_progress)
+        time_elapsed = (time.mktime(time.localtime()) - self.__start)
         dl_speed = self.__filesize/time_elapsed
-        avr_speed = (dl_speed)/800000000
-        avr_speed_mbps = (dl_speed)/100000000
-        results = (avr_speed,time_elapsed, self.__filesize)
-        self.cleanup()
+        avr_speed = (dl_speed)/1000000
+        avr_speed_mbps = (dl_speed)*0.000008
+        results = (avr_speed,avr_speed_mbps,time_elapsed, float(self.__filesize))
         return results
 
     def print_progress(self,chunk):
         self.__sizeWritten += len(chunk)
-
         done = int(50 * self.__sizeWritten / int(self.__filesize))
-        time_elapsed = (time.clock() - self.__start)
-        dl_speed = self.__filesize/time_elapsed
-        avr_speed = (dl_speed)/800000000
-        avr_speed_mbps = (dl_speed)/100000000
-
-        if self.VERBOSE:
-            sys.stdout.write("\r[%s%s] %s MB/s - %s Mbps" % ('=' * done, ' ' * (50-done), round(avr_speed,2), round(avr_speed_mbps,2)))
-            sys.stdout.flush()
-
+        time_elapsed = (time.mktime(time.localtime()) - self.__start)
+        try:
+            dl_speed = self.__sizeWritten/time_elapsed
+            avr_speed = (dl_speed)/1000000
+            avr_speed_mbps = (dl_speed)*0.000008
+            if self.VERBOSE:
+                sys.stdout.write("\r[%s%s] %s MB/s - %s Mbps" % ('=' * done, ' ' * (50-done), round(avr_speed,2), round(avr_speed_mbps,2)))
+                sys.stdout.flush()
+        except ZeroDivisionError:
+            pass
