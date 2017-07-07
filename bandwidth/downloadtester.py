@@ -34,7 +34,6 @@ class DownloadTester():
         return url.split('/')[-1]
 
     def download_file(self, url) :
-
       self.localFilename = self.get_local_filename(url)
       with open('/tmp/' + self.localFilename, 'wb') as f:
         dl = 0
@@ -71,7 +70,7 @@ class DownloadTester():
     def csv_parser(self, results, csv_file):
         with open(csv_file, 'wb') as myfile:
             wr = csv.writer(myfile)
-            header = ["Muestra", "Tamaño", "Velocidad Promedio (MB/sec)", "Ancho de Banda (Mbps)"]
+            header = ["Sample#", "File Size", "Average Speed (MB/sec)", "Average Throughput (Mbps)"]
             wr.writerow(header)
             n = 1
             for result in results:

@@ -75,7 +75,7 @@ class UploadTester():
         with open(csv_file, 'wb') as myfile:
             wr = csv.writer(myfile)
             #TODO: Add date of test and test info to file
-            header = ["Muestra", "Tamaño", "Velocidad Promedio (MB/sec)"]
+            header = ["Sample#", "File Size", "Average Speed (MB/sec)", "Average Throughput (Mbps)"]
             wr.writerow(header)
             n = 1
             for result in results:
