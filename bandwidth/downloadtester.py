@@ -43,6 +43,7 @@ class DownloadTester():
         self.__size = 0
         dl_speed = 0
         start = time.clock()
+        overall_start = time.mktime(time.localtime())
         r = requests.get(url, stream=True)
         total_length = r.headers.get('content-length')
 
@@ -59,13 +60,13 @@ class DownloadTester():
             if overall_time_elapsed > 0:
                 dl_speed = self.__size/overall_time_elapsed
 
-            #Convert to MB/s when printing
             if self.VERBOSE:
-              sys.stdout.write("\r[%s%s] %s MB/s - %s Mbps" % ('=' * done, ' ' * (50-done), round(avr_speed,2), round(avr_speed_mbps,2)))
+              #Convert to MB/s and Mbps for printing
+              sys.stdout.write("\r[%s%s] %s MB/s - %s Mbps" % ('=' * done, ' ' * (50-done), round(dl_speed*0.000001,2), round(dl_speed*0.000008,2)))
               sys.stdout.flush()
+
           self.cleanup()
-          results = (avr_speed,avr_speed_mbps,time_elapsed, dl)
-      return results
+      return dl_speed
 
     def cleanup(self):
       #Cleanup

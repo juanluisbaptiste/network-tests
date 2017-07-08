@@ -17,7 +17,6 @@ def csv_parser(results, csv_file, overall, filesize):
         wr.writerow(overall_header)
         wr.writerow(overall_speeds_csv)
         wr.writerow([])
-        #host_info = ["FTP Server", self.__]
         header = ["Sample#", "File Size", "Average Speed (MB/sec)", "Average Throughput (Mbps)"]
         wr.writerow(header)
         n = 1
@@ -28,11 +27,9 @@ def csv_parser(results, csv_file, overall, filesize):
 
 def calculate_overall_speed(results):
     overall_avg_speed = 0
-    overall_avg_speed_mbps = 0
     n = 0
     for result in results:
-        overall_avg_speed += round(result[0],2)
-        overall_avg_speed_mbps += round(result[1],2)
+        overall_avg_speed += round(result,2)
         n += 1
 
-    return (overall_avg_speed,overall_avg_speed_mbps)
+    return overall_avg_speed/n
