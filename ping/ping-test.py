@@ -80,7 +80,7 @@ def main():
                 ping_parser.parse(result)
                 host = [line,ping_parser]
                 ping_results.append(host)
-                verboseprint("PLC: {0} PLR: {1}% RTT_MIN: {2}ms RTT_MAX: {3}ms RTT_AVG: {4}ms\n".format(ping_parser.packet_loss_count,ping_parser.packet_loss_rate,ping_parser.rtt_min,ping_parser.rtt_max,ping_parser.rtt_avg))
+                verboseprint("RTT_MIN: {0}ms RTT_MAX: {1}ms RTT_AVG: {2}ms PLC: {3} PLR: {4}%\n".format(ping_parser.rtt_min,ping_parser.rtt_max,ping_parser.rtt_avg,ping_parser.packet_loss_count,ping_parser.packet_loss_rate))
             except AttributeError as e:
                 verboseprint("Non-existent Host: " + line + "\n")
                 #logger.debug(e)
