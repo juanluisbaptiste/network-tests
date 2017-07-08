@@ -85,7 +85,8 @@ def main():
        result = tester.upload_file(options.uploadfile)
        results.append(result)
        print
-       verboseprint("\nAverage upload speed: " + str(round(result[0],2)) + "MB/s - " + str(round(result[1],2)) + "Mbps\n")
+       print result
+       verboseprint("\nAverage upload speed: " + str(round(result*0.000001,2)) + "MB/s - " + str(round(result*0.000008,2)) + "Mbps\n")
        n += 1
 
     print

@@ -58,10 +58,7 @@ class UploadTester():
         self.__ftp.storbinary('STOR ' + self.__filename, file, chunk_size, self.print_progress)
         time_elapsed = (time.mktime(time.localtime()) - self.__start)
         dl_speed = self.__filesize/time_elapsed
-        avr_speed = (dl_speed)/1000000
-        avr_speed_mbps = (dl_speed)*0.000008
-        results = (avr_speed,avr_speed_mbps,time_elapsed, float(self.__filesize))
-        return results
+        return dl_speed
 
     def print_progress(self,chunk):
         self.__sizeWritten += len(chunk)
