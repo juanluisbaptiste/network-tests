@@ -8,14 +8,18 @@
 from __future__ import print_function
 import csv
 import json
+import time
 
-def csv_ping_parser(results, csv_file):
+def csv_ping_parser(results, csv_file, count):
     with open(csv_file, 'wb') as myfile:
         wr = csv.writer(myfile)
-        header = ["Perdidos", "% Perdidos", "Minimo", "Maximo", "Promedio", "Host"]
+        date = ["Date", time.strftime("%c")]
+        wr.writerow(date)
+        wr.writerow([])
+        header = ["Count","Lost", "% Lost", "Min", "Max", "Average", "Host"]
         wr.writerow(header)
         for result in results:
-            row = [result[1].packet_loss_count,result[1].packet_loss_rate,result[1].rtt_min,result[1].rtt_max,result[1].rtt_avg,result[0]]
+            row = [count, result[1].packet_loss_count,result[1].packet_loss_rate,result[1].rtt_min,result[1].rtt_max,result[1].rtt_avg,result[0]]
             wr.writerow(row)
 
 def print_ping_parser(ping_parser):

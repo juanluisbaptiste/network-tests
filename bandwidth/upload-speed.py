@@ -10,7 +10,9 @@
 import argparse
 import os
 import signal
+import statistics
 import sys
+import time
 
 import uploadtester
 import csv_parser
@@ -89,7 +91,13 @@ def main():
     #Create csv with test results
     if options.outfile:
         csv_file = os.path.join(scriptDir, options.outfile)
-        csv_parser.csv_parser(results,csv_file)
+        date = time.strftime("%c")
+        overall_speeds = csv_parser.calculate_overall_speed(results)
+        median_speeds = statistics.median(results)
+        overall_headers = ["Date","Server","File","Size","Average (MB/s)", "Average (Mbps)", "Median (MB/sec)", "Median (Mbps)"]
+        overall_values = [date,options.host,options.uploadfile,filesize,round(overall_speeds*0.000001,2), round(overall_speeds*0.000008,2), round(median_speeds*0.000001,2), round(median_speeds*0.000008,2)]
+        overall = (overall_headers,overall_values)
+        csv_parser.csv_parser(results,csv_file, overall,filesize)
     #Cleanup everything
     tester.cleanup()
 

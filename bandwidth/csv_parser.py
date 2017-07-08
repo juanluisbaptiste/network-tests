@@ -6,21 +6,14 @@
 """
 
 import csv
-import statistics
-import time
 
 def csv_parser(results, csv_file):
     overall_speeds = ()
     with open(csv_file, 'wb') as myfile:
         wr = csv.writer(myfile)
         #TODO: Add date of test and test info to file
-        date = ["Date", time.strftime("%c")]
-        wr.writerow(date)
-        wr.writerow([])
-        overall_speeds = calculate_overall_speed(results)
-        median_speeds = statistics.median(results)
-        overall_header = ["Average (MB/s)", "Average (Mbps)", "Median (MB/sec)", "Median (Mbps)"]
-        overall_speeds_csv = [overall_speeds[0], overall_speeds[1], round(median_speeds[0],2), round(median_speeds[1],2)]
+        overall_header = overall[0]
+        overall_speeds_csv = overall[1]
         wr.writerow(overall_header)
         wr.writerow(overall_speeds_csv)
         wr.writerow([])

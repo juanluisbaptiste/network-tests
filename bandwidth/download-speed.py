@@ -12,7 +12,9 @@
 import argparse
 import os
 import signal
+import statistics
 import sys
+import time
 
 import downloadtester
 import csv_parser
@@ -87,7 +89,16 @@ def main():
     #Create csv with test results
     if options.outfile:
         csv_file = os.path.join(scriptDir, options.outfile)
-        csv_parser.csv_parser(results,csv_file)
+        date = time.strftime("%c")
+        overall_speeds = csv_parser.calculate_overall_speed(results)
+        print results
+        print results[0]
+        median_speeds = statistics.median(results)
+        print median_speeds
+        overall_headers = ["Date","URL","Size (MB)","Average (MB/s)", "Average (Mbps)", "Median (MB/sec)", "Median (Mbps)"]
+        overall_values = [date,url,filesize,round(overall_speeds*0.000001,2), round(overall_speeds*0.000008,2), round(median_speeds*0.000001,2), round(median_speeds*0.000008,2)]
+        overall = (overall_headers,overall_values)
+        csv_parser.csv_parser(results,csv_file, overall, filesize)
 
 if __name__ == "__main__":
     sys.exit(main())
