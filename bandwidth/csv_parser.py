@@ -7,7 +7,7 @@
 
 import csv
 
-def csv_parser(results, csv_file):
+def csv_parser(results, csv_file, overall, filesize):
     overall_speeds = ()
     with open(csv_file, 'wb') as myfile:
         wr = csv.writer(myfile)
@@ -22,9 +22,7 @@ def csv_parser(results, csv_file):
         wr.writerow(header)
         n = 1
         for result in results:
-            #convert file size to MB
-            size = round(result[3]/1024/1024,2)
-            row = [n,size,round(result[0],2),round(result[1],2)]
+            row = [n,filesize,round(result*0.000001,2),round(result*0.000008,2)]
             wr.writerow(row)
             n += 1
 

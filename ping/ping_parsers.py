@@ -49,3 +49,14 @@ def print_ping_parser(ping_parser):
     print("rtt_max:", ping_parser.rtt_max)
     print("rtt_mdev:", ping_parser.rtt_mdev)
     print()
+
+def calculate_overall_values(results):
+    overall_avg_speed = 0
+    overall_avg_speed_mbps = 0
+    n = 0
+    for result in results:
+        overall_avg_speed += round(result[0],2)
+        overall_avg_speed_mbps += round(result[1],2)
+        n += 1
+
+    return (overall_avg_speed,overall_avg_speed_mbps)

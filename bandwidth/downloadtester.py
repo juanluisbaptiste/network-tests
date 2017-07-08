@@ -24,6 +24,10 @@ class DownloadTester():
                  'usw': 'http://speedtest.fremont.linode.com/100MB-fremont.bin',
                  'washington': 'http://speedtest.wdc01.softlayer.com/downloads/test500.zip'
                  }
+    __size = 0
+
+    def get_filesize(self):
+        return self.__size
 
     def get_location(self, location=None):
         if location is None:
@@ -36,7 +40,7 @@ class DownloadTester():
     def download_file(self, url) :
       self.localFilename = self.get_local_filename(url)
       with open('/tmp/' + self.localFilename, 'wb') as f:
-        dl = 0
+        self.__size = 0
         dl_speed = 0
         start = time.clock()
         r = requests.get(url, stream=True)
@@ -46,13 +50,14 @@ class DownloadTester():
           f.write(r.content)
         else:
           for chunk in r.iter_content(1024):
-            dl += len(chunk)
+            self.__size += len(chunk)
             f.write(chunk)
-            done = int(50 * dl / int(total_length))
-            time_elapsed = (time.clock() - start)
-            dl_speed = dl/time_elapsed
-            avr_speed = (dl_speed)/8000000
-            avr_speed_mbps = (dl_speed)/1000000
+            done = int(50 * self.__size / int(total_length))
+            #time_elapsed = (time.clock() - start)
+            #dl_speed = dl/time_elapsed
+            overall_time_elapsed = (time.mktime(time.localtime()) - overall_start)
+            if overall_time_elapsed > 0:
+                dl_speed = self.__size/overall_time_elapsed
 
             #Convert to MB/s when printing
             if self.VERBOSE:

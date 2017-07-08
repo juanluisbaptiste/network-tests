@@ -71,7 +71,8 @@ def main():
     verboseprint('Username: ' + tester.username)
     verboseprint('Password: ' + tester.password)
     verboseprint('\nFile: ' + options.uploadfile)
-    verboseprint('File Size: ' + str(round(filesize/1024/1024,2)) + "MB")
+    filesize = round(filesize/1024/1024,2) #size in MB
+    verboseprint('Size: ' + str(filesize) + "MB")
     num_tests = int(options.count or tester.DEFAULT_UPLOAD_COUNT)
     verboseprint('\nTotal Tests: ' + str(num_tests))
     print

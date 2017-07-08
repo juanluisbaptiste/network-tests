@@ -79,10 +79,11 @@ def main():
     while (n < num_tests):
        verboseprint ('Test #' + str(n + 1) + ': ')
        result = tester.download_file(url)
+       filesize = round(tester.get_filesize()/1024/1024,2)
        results.append(result)
        print
-       verboseprint("Downloaded file size: " + str(result[3]/1024/1024) + " MB")
-       verboseprint("\nAverage download speed: " + str(round(result[0],2)) + " MB/s - " + str(round(result[1],2)) + " Mbps\n")
+       verboseprint("Downloaded file size: " + str(filesize) + " MB")
+       verboseprint("\nAverage download speed: " + str(round(result*0.000001,2)) + " MB/s - " + str(round(result*0.000008,2)) + " Mbps\n")
        n += 1
 
     print
