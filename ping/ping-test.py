@@ -88,7 +88,7 @@ def main():
             n += 1
 
     csv_file = os.path.join(scriptDir, options.outfile)
-    ping_parsers.csv_ping_parser(ping_results,csv_file)
+    ping_parsers.csv_ping_parser(ping_results,csv_file, options.count)
 
     return 0
 
