@@ -83,12 +83,11 @@ def main():
                 verboseprint("RTT_MIN: {0}ms RTT_MAX: {1}ms RTT_AVG: {2}ms PLC: {3} PLR: {4}%\n".format(ping_parser.rtt_min,ping_parser.rtt_max,ping_parser.rtt_avg,ping_parser.packet_loss_count,ping_parser.packet_loss_rate))
             except AttributeError as e:
                 verboseprint("Non-existent Host: " + line + "\n")
-                #logger.debug(e)
-            #verboseprint("Results:")
             n += 1
 
-    csv_file = os.path.join(scriptDir, options.outfile)
-    ping_parsers.csv_ping_parser(ping_results,csv_file, options.count)
+    if options.outfile:
+        csv_file = os.path.join(scriptDir, options.outfile)
+        ping_parsers.csv_ping_parser(ping_results,csv_file, options.count)
 
     return 0
 
