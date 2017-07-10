@@ -86,16 +86,21 @@ def main():
        verboseprint("\nAverage download speed: " + str(round(result*0.000001,2)) + " MB/s - " + str(round(result*0.000008,2)) + " Mbps\n")
        n += 1
 
-    overall_speeds = csv_parser.calculate_overall_speed(results)
-    median_speeds = statistics.median(results)
-    verboseprint("\nOverall Average upload speed: " + str(round(overall_speeds*0.000001,2)) + "MB/s - " + str(round(overall_speeds*0.000008,2)) + "Mbps\n")
+    overall_speed = csv_parser.calculate_overall_speed(results)
+    median_speed = statistics.median(results)
+    min_speed = min (results)
+    max_speed = max (results)
+    verboseprint("\nOverall Average download speed: " + str(round(overall_speed*0.000001,2)) + "MB/s - " + str(round(overall_speed*0.000008,2)) + "Mbps")
+    verboseprint("Maximum download speed: " + str(round(max_speed*0.000001,2)) + "MB/s - " + str(round(max_speed*0.000008,2)) + "Mbps")
+    verboseprint("Minimum download speed: " + str(round(min_speed*0.000001,2)) + "MB/s - " + str(round(min_speed*0.000008,2)) + "Mbps")
+    verboseprint("Median download speed: " + str(round(median_speed*0.000001,2)) + "MB/s - " + str(round(median_speed*0.000008,2)) + "Mbps\n")
 
     #Create csv with test results
     if options.outfile:
         csv_file = os.path.join(scriptDir, options.outfile)
         date = time.strftime("%c")
-        overall_headers = ["Date","URL","Size (MB)","Average (MB/s)", "Average (Mbps)", "Median (MB/sec)", "Median (Mbps)"]
-        overall_values = [date,url,filesize,round(overall_speeds*0.000001,2), round(overall_speeds*0.000008,2), round(median_speeds*0.000001,2), round(median_speeds*0.000008,2)]
+        overall_headers = ["Date","URL","Size (MB)","Min (MB/s)","Min (Mbps)","Max (MB/s)","Max (Mbps)","Average (MB/s)", "Average (Mbps)", "Median (MB/sec)", "Median (Mbps)"]
+        overall_values = [date,url,filesize, round(min_speed*0.000001,2), round(min_speed*0.000001,2), round(max_speed*0.000001,2), round(max_speed*0.000008,2),round(overall_speed*0.000001,2), round(overall_speed*0.000001,2), round(median_speed*0.000001,2), round(median_speed*0.000008,2)]
         overall = (overall_headers,overall_values)
         csv_parser.csv_parser(results,csv_file, overall, filesize)
 
