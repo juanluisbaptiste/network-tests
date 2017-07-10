@@ -24,12 +24,3 @@ def csv_parser(results, csv_file, overall, filesize):
             row = [n,filesize,round(result*0.000001,2),round(result*0.000008,2)]
             wr.writerow(row)
             n += 1
-
-def calculate_overall_speed(results):
-    overall_avg_speed = 0
-    n = 0
-    for result in results:
-        overall_avg_speed += round(result,2)
-        n += 1
-
-    return overall_avg_speed/n

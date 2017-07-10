@@ -88,7 +88,7 @@ def main():
        verboseprint("\nAverage upload speed: " + str(round(result*0.000001,2)) + "MB/s - " + str(round(result*0.000008,2)) + "Mbps\n")
        n += 1
 
-    overall_speed = csv_parser.calculate_overall_speed(results)
+    overall_speed = sum(results)/n
     median_speed = statistics.median(results)
     min_speed = min (results)
     max_speed = max (results)
