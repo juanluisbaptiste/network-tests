@@ -16,7 +16,7 @@ def csv_ping_parser(results, csv_file, count):
         date = ["Date", time.strftime("%c")]
         wr.writerow(date)
         wr.writerow([])
-        header = ["Count","Lost", "% Lost", "Min", "Max", "Average", "Host"]
+        header = ["Count","Lost", "% Lost", "Min (ms)", "Max (ms)", "Average (ms)", "Host"]
         wr.writerow(header)
         for result in results:
             row = [count, result[1].packet_loss_count,result[1].packet_loss_rate,result[1].rtt_min,result[1].rtt_max,result[1].rtt_avg,result[0]]
