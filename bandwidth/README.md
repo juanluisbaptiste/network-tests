@@ -44,16 +44,30 @@ Run with no arguments and use default download location:
 python download-speed.py
 ```
 
+Use custom download url:
+
+```
+python download-speed.py -u http://yourserver.com/file.zip
+```
+
 Save results to a CSV file:
 
 ```
 python download-speed.py -o results.csv
 ```
 
-Use custom download url:
+Sample CSV output:
 
 ```
-python download-speed.py -u http://yourserver.com/file.zip
+Date,URL,Size (MB),Min (MB/s),Min (Mbps),Max (MB/s),Max (Mbps),Average (MB/s),Average (Mbps),Median (MB/sec),Median (Mbps)
+Mon Jul 10 00:14:59 2017,http://speedtest.tokyo.linode.com/100MB-tokyo.bin,100.0,1.29,1.29,1.33,10.62,1.31,1.31,1.31,10.49
+
+Sample#,File Size,Average Speed (MB/sec),Average Throughput (Mbps)
+1,100.0,1.31,10.49
+2,100.0,1.31,10.49
+3,100.0,1.29,10.36
+4,100.0,1.31,10.49
+5,100.0,1.33,10.62
 ```
 
 
@@ -101,5 +115,20 @@ Enable passive mode:
 
 ```
 python upload-speed.py -f /path/to/file -l ftp.myserver.com -u ftpuser -p ftppassword -P
+
+```
+
+Sample CSV output:
+
+```
+Date,Server,File,Size,Min (MB/s),Min (Mbps),Max (MB/s),Max (Mbps),Average (MB/s),Average (Mbps),Median (MB/sec),Median (Mbps)
+Mon Jul 10 00:11:00 2017,ftp.server.yyy,/home/juancho/Downloads/Test.zip,4.16,0.15,0.15,0.23,1.84,0.18,1.42,0.17,1.34
+
+Sample#,File Size,Average Speed (MB/sec),Average Throughput (Mbps)
+1,4.16,0.17,1.34
+2,4.16,0.15,1.2
+3,4.16,0.23,1.84
+4,4.16,0.17,1.34
+5,4.16,0.17,1.4
 
 ```

@@ -41,3 +41,17 @@ Save results to a CSV file:
 ```
 python ping-test.py -f hosts.txt -o results.csv
 ```
+
+Sample CSV output:
+
+```
+Date,Fri Jul  7 02:48:54 2017
+
+Count,Lost,% Lost,Min,Max,Average,Host
+5,0,0.0,12.638,21.849,16.211,www.cisco.com
+5,0,0.0,12.013,15.859,13.801,www.google.com
+5,0,0.0,12.422,15.944,13.913,www.adobe.com
+5,0,0.0,78.372,82.801,80.783,www.hotmail.com
+5,0,0.0,53.662,57.935,56.27,www.akamai.com
+
+```
