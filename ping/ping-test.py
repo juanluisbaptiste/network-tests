@@ -14,7 +14,7 @@ import sys
 import pingparsing
 import ping_parsers
 
-DEFAULT_PING_COUNT = 20
+DEFAULT_PING_COUNT = 5
 VERBOSE = True
 
 def parse_option():
