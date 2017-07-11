@@ -45,6 +45,34 @@ def signal_handler(signal, frame):
         sys.exit(0)
 signal.signal(signal.SIGINT, signal_handler)
 
+def get_min_avg(results):
+    return get_avg(results,'rtt_min')
+
+def get_max_avg(results):
+    return get_avg(results,'rtt_max')
+
+def get_ping_avg(results):
+    return get_avg(results,'rtt_avg')
+
+def get_packetlostcount_avg(results):
+    return get_avg(results,'packet_loss_count')
+
+def get_packetlostrate_avg(results):
+    return get_avg(results,'packet_loss_rate')
+
+def get_avg(results,metric):
+    val = 0
+    for result in results:
+        val += getattr(result[1],metric)
+    return round(val/len(results),2)
+
+def get_std_deviation(results):
+    vals = []
+    for result in results:
+        vals.append(result[1].rtt_avg)
+    return round(numpy.std(vals)/len(results),2)
+
+
 def main():
     global VERBOSE
     options = parse_option()
@@ -85,6 +113,20 @@ def main():
             except AttributeError as e:
                 verboseprint("Non-existent Host: " + line + "\n")
             n += 1
+    #Calculate stats
+    avg_min = get_min_avg(ping_results)
+    avg_max = get_max_avg(ping_results)
+    avg_ping = get_ping_avg(ping_results)
+    avg_plc = get_packetlostcount_avg(ping_results)
+    avg_plr = get_packetlostrate_avg(ping_results)
+    std_deviation = get_std_deviation(ping_results)
+    overall = (options.count,avg_min,avg_max,avg_ping,avg_plc,avg_plr,std_deviation)
+    verboseprint("\nAverage min: " + str(avg_min) + " ms")
+    verboseprint("Average max: " + str(avg_max) + " ms")
+    verboseprint("Average ping: " + str(avg_ping) + " ms")
+    verboseprint("Average packet loss count: " + str(avg_plc))
+    verboseprint("Average packet loss rate: " + str(avg_plr) + " %")
+    verboseprint("Standard deviation: " + str(std_deviation) + " ms\n")
 
     if options.outfile:
         csv_file = os.path.join(scriptDir, options.outfile)

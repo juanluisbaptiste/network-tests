@@ -8,22 +8,21 @@
 from __future__ import print_function
 import csv
 import json
+import numpy
 import time
 
-def csv_ping_parser(results, csv_file, count):
+def csv_ping_parser(results, csv_file, overall_values):
     with open(csv_file, 'wb') as myfile:
         wr = csv.writer(myfile)
         date = time.strftime("%c")
-        overall_headers = ["Date","Min (ms)", "Max (ms)", "Average (ms)", "Deviation (ms)"]
-        overall_values = [date,url,filesize, round(min_speed*0.000001,2), round(min_speed*0.000001,2), round(max_speed*0.000001,2), round(max_speed*0.000008,2),round(overall_speed*0.000001,2), round(overall_speed*0.000001,2), round(median_speed*0.000001,2), round(median_speed*0.000008,2)]
-        overall = (overall_headers,overall_values)
-
-        wr.writerow(date)
+        overall_headers = ["Count","Min (ms)","Max (ms)","Average (ms)","Packet Loss Count","Packet Loss Rate (%)", "Standard Deviation (ms)"]
+        wr.writerow(overall_headers)
+        wr.writerow(overall_values)
         wr.writerow([])
-        header = ["Count","Lost", "% Lost", "Min (ms)", "Max (ms)", "Average (ms)", "Host"]
+        header = ["Count","Min (ms)", "Max (ms)", "Average (ms)","Std Deviation (ms)","Lost", "% Lost", "Host"]
         wr.writerow(header)
         for result in results:
-            row = [count, result[1].packet_loss_count,result[1].packet_loss_rate,result[1].rtt_min,result[1].rtt_max,result[1].rtt_avg,result[0]]
+            row = [result[1].packet_transmit, result[1].rtt_min,result[1].rtt_max,result[1].rtt_avg,numpy.std(result[1].rtt_avg),result[1].packet_loss_count,result[1].packet_loss_rate,result[0]]
             wr.writerow(row)
 
 def print_ping_parser(ping_parser):
