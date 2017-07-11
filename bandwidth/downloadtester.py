@@ -42,8 +42,8 @@ class DownloadTester():
       with open('/tmp/' + self.localFilename, 'wb') as f:
         self.__size = 0
         dl_speed = 0
-        start = time.clock()
-        overall_start = time.mktime(time.localtime())
+        #start = time.clock()
+        start = time.mktime(time.localtime())
         r = requests.get(url, stream=True)
         total_length = r.headers.get('content-length')
 
@@ -55,10 +55,10 @@ class DownloadTester():
             f.write(chunk)
             done = int(50 * self.__size / int(total_length))
             #time_elapsed = (time.clock() - start)
-            #dl_speed = dl/time_elapsed
-            overall_time_elapsed = (time.mktime(time.localtime()) - overall_start)
-            if overall_time_elapsed > 0:
-                dl_speed = self.__size/overall_time_elapsed
+            time_elapsed = (time.mktime(time.localtime()) - start)
+            if time_elapsed > 0:
+                dl_speed = self.__size/time_elapsed
+                self.overall_time_elapsed = time_elapsed
 
             if self.VERBOSE:
               #Convert to MB/s and Mbps for printing
