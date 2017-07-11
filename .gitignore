@@ -1,6 +1,5 @@
 *.pyc
 *.csv
-*.txt
 csv
 dist
 build
