@@ -8,7 +8,7 @@ COPY bandwidth /bandwidth
 RUN apt-get update && \
     apt-get install -y iputils-ping python-pip && \
     pip install --upgrade pip && \
-    pip install datetime pingparsing requests statistics && \
+    pip install numpy pingparsing requests statistics && \
     chmod 755 /ping/ping-test.py /bandwidth/*-speed.py
 ENV PATH=$PATH:/ping:/bandwidth
 CMD ["/bin/bash"]
