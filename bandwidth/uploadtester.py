@@ -19,6 +19,7 @@ class UploadTester():
     username = ""
     password = ""
     passive = False
+    overall_time_elapsed = 0
 
     __sizeWritten = 0
     __filesize = 0
@@ -57,6 +58,7 @@ class UploadTester():
         #Sleep one second to guarantee there's a time difference
         self.__ftp.storbinary('STOR ' + self.__filename, file, chunk_size, self.print_progress)
         time_elapsed = (time.mktime(time.localtime()) - self.__start)
+        self.overall_time_elapsed = time_elapsed
         dl_speed = self.__filesize/time_elapsed
         return dl_speed
 

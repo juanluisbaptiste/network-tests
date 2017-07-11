@@ -24,6 +24,7 @@ class DownloadTester():
                  'usw': 'http://speedtest.fremont.linode.com/100MB-fremont.bin',
                  'washington': 'http://speedtest.wdc01.softlayer.com/downloads/test500.zip'
                  }
+    overall_time_elapsed = 0
     __size = 0
 
     def get_filesize(self):
