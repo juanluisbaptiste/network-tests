@@ -29,7 +29,7 @@ def parse_option():
     parser.add_argument(
         "-o", "--outfile", required=False, help="Destination file for test results in CSV format")
     parser.add_argument(
-        "-v", "--verbose", action="store_true", help="Print verbose output from the download process")
+        "-s", "--silent", action="store_true", help="Don't print verbose output from the upload process")
     parser.add_argument(
         "-l", "--host", required=True, help="FTP server for upload test")
     parser.add_argument(
@@ -58,7 +58,9 @@ def main():
 
     if options.passive == "yes":
         tester.passive = True
-    if options.verbose:
+    if options.silent:
+        tester.VERBOSE = False
+    if tester.VERBOSE:
         def verboseprint(*args):
             # Print each argument separately so caller doesn't need to
             # stuff everything to be printed into a single string

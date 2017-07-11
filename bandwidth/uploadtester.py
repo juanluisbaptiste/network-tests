@@ -14,7 +14,7 @@ import time
 
 class UploadTester():
     DEFAULT_UPLOAD_COUNT = 1
-    VERBOSE = False
+    VERBOSE = True
     host = ""
     username = ""
     password = ""
