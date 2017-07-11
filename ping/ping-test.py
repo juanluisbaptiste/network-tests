@@ -12,6 +12,8 @@ import numpy
 import os
 import signal
 import sys
+import time
+
 import pingparsing
 import ping_parsers
 
@@ -96,6 +98,8 @@ def main():
         verboseprint("\nNetwork Interface: " + str(transmitter.interface))
     verboseprint("Ping Count: " + str(transmitter.count))
     verboseprint("Hosts: " + str(file_len(options.pingfile)) + "\n")
+
+    start = time.mktime(time.localtime())
     n = 0
     for line in lines:
         if not line.startswith("#"):
@@ -113,6 +117,8 @@ def main():
             except AttributeError as e:
                 verboseprint("Non-existent Host: " + line + "\n")
             n += 1
+    time_elapsed = (time.mktime(time.localtime()) - start)
+    verboseprint("\nTime elapsed: " + str(time_elapsed) + " seconds")
     #Calculate stats
     avg_min = get_min_avg(ping_results)
     avg_max = get_max_avg(ping_results)
