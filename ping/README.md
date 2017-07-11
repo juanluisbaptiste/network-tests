@@ -15,17 +15,19 @@ This script has the following feautures:
 ### Usage
 
 ```
-usage: ping-test.py [-h] [-c COUNT] -f PINGFILE -o OUTFILE [-I INTERFACE]
+usage: ping-test.py [-h] [-c COUNT] -f PINGFILE [-o OUTFILE] [-I INTERFACE]
+                    [-s]
 
 optional arguments:
   -h, --help            show this help message and exit
   -c COUNT, --count COUNT
-                        Ping count. Default: 20
+                        Ping count. Default: 5
   -f PINGFILE, --pingfile PINGFILE
                         List of hosts to ping
   -o OUTFILE, --outfile OUTFILE
                         Destination file for ping results
   -I INTERFACE          Network interface to use for pinging
+  -s, --silent          Don't print verbose output from the test
 ```
 
 #### Examples

@@ -55,7 +55,6 @@ class UploadTester():
         self.__start = time.mktime(time.localtime())
         file = open(upload_file, 'rb')
         self.__filename = ntpath.basename(upload_file)
-        #Sleep one second to guarantee there's a time difference
         self.__ftp.storbinary('STOR ' + self.__filename, file, chunk_size, self.print_progress)
         time_elapsed = (time.mktime(time.localtime()) - self.__start)
         self.overall_time_elapsed = time_elapsed

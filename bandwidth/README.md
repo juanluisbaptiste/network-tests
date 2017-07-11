@@ -84,7 +84,7 @@ Measure the upload speed by uploading a file to an FTP server. Optionally with t
 ### usage
 
 ```
-usage: upload-speed.py [-h] [-c COUNT] -f UPLOADFILE [-o OUTFILE] [-v] -l HOST
+usage: upload-speed.py [-h] [-c COUNT] -f UPLOADFILE [-o OUTFILE] [-s] -l HOST
                        -u USERNAME -p PASSWORD [-P PASSIVE]
 
 optional arguments:
@@ -95,7 +95,7 @@ optional arguments:
                         Test file to upload
   -o OUTFILE, --outfile OUTFILE
                         Destination file for test results in CSV format
-  -v, --verbose         Print verbose output from the download process
+  -s, --silent          Don't print verbose output from the upload process
   -l HOST, --host HOST  FTP server for upload test
   -u USERNAME, --username USERNAME
                         FTP user name for upload test
