@@ -5,7 +5,6 @@
 .. codeauthor:: Juan Luis Baptiste <juan.baptiste@gmail.com>
 """
 
-import datetime
 import ftplib
 import ntpath
 import os

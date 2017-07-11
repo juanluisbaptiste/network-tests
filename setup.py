@@ -9,7 +9,7 @@ setup(
 
     # Project uses reStructuredText, so ensure that the docutils get
     # installed or upgraded on the target machine
-    install_requires=['datetime','requests','statistics'],
+    install_requires=['requests','numpy','pingparsing','statistics'],
 
     package_data={
         # If any package contains *.txt or *.rst files, include them:
