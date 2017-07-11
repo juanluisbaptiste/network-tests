@@ -65,9 +65,9 @@ def main():
     if transmitter.interface is None:
         verboseprint("Network Interface: Default")
     else:
-        verboseprint("Network Interface: " + str(transmitter.interface))
-    verboseprint("\nPing Count: " + str(transmitter.count))
-    verboseprint("\nTotal Tests: " + str(file_len(options.pingfile)) + "\n")
+        verboseprint("\nNetwork Interface: " + str(transmitter.interface))
+    verboseprint("Ping Count: " + str(transmitter.count))
+    verboseprint("Hosts: " + str(file_len(options.pingfile)) + "\n")
     n = 0
     for line in lines:
         if not line.startswith("#"):
