@@ -4,10 +4,8 @@ This script has the following feautures:
 
 ## Features
 - Run multiple tests in one go.
-- Calculate average speeds for multiple tests.
-- Speed measurement in both Mbps and MB/s
+- Overall statistics.
 - Save the results to a file with CSV format.
-- Toggle FTP passive mode.
 
 ## Required Python Modules
 - pingparsing

@@ -6,6 +6,7 @@ Both scripts have the following feautures:
 - Run multiple tests in one go.
 - Calculate average speeds for multiple tests.
 - Speed measurement in both Mbps and MB/s
+- Overall statistics with metrics like minimum, maximum and average speeds, and standard deviation
 - Save the results to a file with CSV format.
 
 ### Download Speed Test
