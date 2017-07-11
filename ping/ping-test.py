@@ -130,7 +130,7 @@ def main():
 
     if options.outfile:
         csv_file = os.path.join(scriptDir, options.outfile)
-        ping_parsers.csv_ping_parser(ping_results,csv_file, options.count)
+        ping_parsers.csv_ping_parser(ping_results,csv_file,overall)
 
     return 0
 
