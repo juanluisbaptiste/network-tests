@@ -1,6 +1,6 @@
 # bandwidth Measurement
 
-Both scripts have the following feautures:
+Both scripts have the following features:
 
 ## Features
 - Run multiple tests in one go.
