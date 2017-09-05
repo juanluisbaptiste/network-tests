@@ -10,6 +10,7 @@ from __future__ import print_function
 import argparse
 import numpy
 import os
+import pkg_resources  # part of setuptools
 import signal
 import sys
 import time
@@ -19,6 +20,7 @@ import ping_parsers
 
 DEFAULT_PING_COUNT = 5
 VERBOSE = True
+version = pkg_resources.require("network-tests")[0].version
 
 def parse_option():
     parser = argparse.ArgumentParser()
@@ -32,7 +34,8 @@ def parse_option():
         "-I", dest="interface", help="Network interface to use for pinging")
     parser.add_argument(
         "-s", "--silent", action="store_true", help="Don't print verbose output from the test")
-
+    parser.add_argument(
+        "-V", "--version", action="version", version="Program Version: " + version, help="Print program version")
 
     return parser.parse_args()
 

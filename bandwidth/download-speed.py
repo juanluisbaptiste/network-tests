@@ -12,15 +12,16 @@
 import argparse
 import numpy
 import os
+import pkg_resources
 import signal
 import statistics
 import sys
 import time
-
 import downloadtester
 import csv_parser
 
 tester = downloadtester.DownloadTester()
+version = pkg_resources.require("network-tests")[0].version
 
 def parse_option():
     parser = argparse.ArgumentParser()
@@ -34,6 +35,8 @@ def parse_option():
         "-s", "--silent", action="store_true", help="Don't print verbose output from the download process")
     parser.add_argument(
         "-u", "--url", required=False, help="Alternate download URL (it must include path and filename)")
+    parser.add_argument(
+        "-V", "--version", action="version", version="Program Version: " + version, help="Print program version")
 
     return parser.parse_args()
 

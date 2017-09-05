@@ -10,6 +10,7 @@
 import argparse
 import numpy
 import os
+import pkg_resources  # part of setuptools
 import signal
 import statistics
 import sys
@@ -19,6 +20,7 @@ import uploadtester
 import csv_parser
 
 tester = uploadtester.UploadTester()
+version = pkg_resources.require("network-tests")[0].version
 
 def parse_option():
     parser = argparse.ArgumentParser()
@@ -38,6 +40,8 @@ def parse_option():
         "-p", "--password", required=True, help="FTP password for upload test")
     parser.add_argument(
         "-P", "--passive", required=False, help="Sets FTP passive mode. Default: " + str(tester.passive))
+    parser.add_argument(
+        "-V", "--version", action="version", version="Program Version: " + version, help="Print program version")
 
     return parser.parse_args()
 
