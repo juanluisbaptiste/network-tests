@@ -53,7 +53,6 @@ signal.signal(signal.SIGINT, signal_handler)
 
 def main():
     options = parse_option()
-    tester.VERBOSE = options.verbose
     tester.host = options.host
     tester.username = options.username
     tester.password = options.password
