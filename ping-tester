@@ -1,0 +1,6 @@
+#!/usr/bin/env python
+# encoding: utf-8
+
+import ping.ping_test
+
+ping.ping_test.main()

@@ -1,0 +1,6 @@
+#!/usr/bin/env python
+# encoding: utf-8
+
+import bandwidth.upload_speed
+
+bandwidth.upload_speed.main()
