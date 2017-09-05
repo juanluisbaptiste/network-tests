@@ -6,6 +6,8 @@
 """
 
 #import datetime
+import errno
+from socket import error as SocketError
 import ftplib
 import ntpath
 import os
@@ -39,6 +41,7 @@ class UploadTester():
     def upload_file(self, upload_file) :
         chunk_size = 8192
         dl_speed = 0
+        global n
         self.__sizeWritten = 0
 
         self.__ftp.connect(self.host,21)
@@ -57,7 +60,14 @@ class UploadTester():
         self.__start = time.mktime(time.localtime())
         file = open(upload_file, 'rb')
         self.__filename = ntpath.basename(upload_file)
-        self.__ftp.storbinary('STOR ' + self.__filename, file, chunk_size, self.print_progress)
+        try:
+            self.__ftp.storbinary('STOR ' + self.__filename, file, chunk_size, self.print_progress)
+        except SocketError as e:
+            if e.errno != errno.ECONNRESET:
+                raise # Not error we are looking for
+            #pass # Handle error here.
+            verboseprint("ERROR: Got connection reset, retring upload...")
+            n = n + 1
         time_elapsed = (time.mktime(time.localtime()) - self.__start)
         self.overall_time_elapsed = time_elapsed
         dl_speed = self.__filesize/time_elapsed
