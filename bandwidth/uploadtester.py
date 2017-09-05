@@ -19,6 +19,7 @@ class UploadTester():
     username = ""
     password = ""
     passive = False
+    current_dir = "/"
     overall_time_elapsed = 0
 
     __sizeWritten = 0
@@ -50,6 +51,7 @@ class UploadTester():
                 sys.exit(1)
         #Set passive mode
         self.__ftp.set_pasv(self.passive)
+        self.__ftp.cwd(self.current_dir)
         self.__filesize = os.path.getsize(upload_file)
         #self.__start = time.clock()
         self.__start = time.mktime(time.localtime())
