@@ -1,6 +1,6 @@
 # Latency Measurement
 
-This script has the following feautures:
+This script has the following features:
 
 ## Features
 - Run multiple tests in one go.
@@ -13,7 +13,7 @@ This script has the following feautures:
 ### Usage
 
 ```
-usage: ping-test.py [-h] [-c COUNT] -f PINGFILE [-o OUTFILE] [-I INTERFACE]
+usage: ping-tester [-h] [-c COUNT] -f PINGFILE [-o OUTFILE] [-I INTERFACE]
                     [-s]
 
 optional arguments:
@@ -33,13 +33,13 @@ optional arguments:
 Run with no arguments and use default download location:
 
 ```
-python ping-test.py -f hosts.txt
+python ping-tester -f hosts.txt
 ```
 
 Save results to a CSV file:
 
 ```
-python ping-test.py -f hosts.txt -o results.csv
+python ping-tester -f hosts.txt -o results.csv
 ```
 
 Sample CSV output:
