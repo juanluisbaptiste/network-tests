@@ -10,7 +10,7 @@ RUN apt-get update && \
     apt-get install -y iputils-ping python-pip && \
     pip install --upgrade pip && \
     pip install numpy pingparsing requests statistics && \
-    tart -C /opt zxvf /opt/network-tests-${VERSION}.tar.gz 
+    tar -C /opt zxvf /opt/network-tests-${VERSION}.tar.gz 
 WORKDIR /opt
 #ENV PATH=$PATH:/ping:/bandwidth
 CMD ["/bin/bash"]
