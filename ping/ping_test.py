@@ -10,7 +10,7 @@ from __future__ import print_function
 import argparse
 import numpy
 import os
-import pkg_resources  # part of setuptools
+import pkg_resources
 import signal
 import sys
 import time
