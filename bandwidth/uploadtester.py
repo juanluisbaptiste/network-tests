@@ -5,7 +5,6 @@
 .. codeauthor:: Juan Luis Baptiste <juan.baptiste@gmail.com>
 """
 
-#import datetime
 import errno
 from socket import error as SocketError
 import ftplib
@@ -65,7 +64,7 @@ class UploadTester():
         except SocketError as e:
             if e.errno != errno.ECONNRESET:
                 raise # Not error we are looking for
-            #pass # Handle error here.
+            #pass
             verboseprint("ERROR: Got connection reset, retring upload...")
             n = n + 1
         time_elapsed = (time.mktime(time.localtime()) - self.__start)
