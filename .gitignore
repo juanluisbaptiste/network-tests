@@ -1,5 +1,8 @@
 *.pyc
 *.csv
+*.bin
+*.zip
+*.egg*info
 csv
 dist
 build
