@@ -57,7 +57,6 @@ def main():
     tester.username = options.username
     tester.password = options.password
     filesize = float(os.path.getsize(options.uploadfile))
-    scriptDir = sys.path[0]
 
     if options.passive == "yes":
         tester.passive = True
@@ -112,6 +111,7 @@ def main():
 
     #Create csv with test results
     if options.outfile:
+        scriptDir = os.getcwd()
         csv_file = os.path.join(scriptDir, options.outfile)
         date = time.strftime("%c")
         overall_headers = ["Date","Server","File","Size","Min (MB/s)","Min (Mbps)","Max (MB/s)","Max (Mbps)","Average (MB/s)", "Average (Mbps)", "Median (MB/sec)", "Median (Mbps)", "Deviation (MB/sec)", "Deviation (Mbps)", "Program Version"]

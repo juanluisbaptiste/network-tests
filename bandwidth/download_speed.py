@@ -64,7 +64,6 @@ def main():
 
     #Set download location
     location = options.location or tester.DEFAULT_LOCATION
-    scriptDir = sys.path[0]
     #Print the program version
     verboseprint(os.path.basename(__file__) + ' ' + version + '\n')
     #Overwrite with custom URL
@@ -107,6 +106,7 @@ def main():
 
     #Create csv with test results
     if options.outfile:
+        scriptDir = os.getcwd()
         csv_file = os.path.join(scriptDir, options.outfile)
         date = time.strftime("%c")
         overall_headers = ["Date","URL","Size (MB)","Min (MB/s)","Min (Mbps)","Max (MB/s)","Max (Mbps)","Average (MB/s)", "Average (Mbps)", "Median (MB/sec)", "Median (Mbps)", "Deviation (MB/sec)", "Deviation (Mbps)", "Program Version"]
