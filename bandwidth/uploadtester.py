@@ -65,7 +65,7 @@ class UploadTester():
             if e.errno != errno.ECONNRESET:
                 raise # Not error we are looking for
             #pass
-            verboseprint("ERROR: Got connection reset, retring upload...")
+            print "ERROR: Got connection reset, retring upload..."
             n = n + 1
         time_elapsed = (time.mktime(time.localtime()) - self.__start)
         self.overall_time_elapsed = time_elapsed
