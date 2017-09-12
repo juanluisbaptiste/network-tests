@@ -130,7 +130,7 @@ def main():
     avg_plc = get_packetlostcount_avg(ping_results)
     avg_plr = get_packetlostrate_avg(ping_results)
     std_deviation = get_std_deviation(ping_results)
-    overall = (options.count,time_elapsed,avg_min,avg_max,avg_ping,avg_plc,avg_plr,std_deviation)
+    overall = (options.count,time_elapsed,avg_min,avg_max,avg_ping,avg_plc,avg_plr,std_deviation, "v" + version)
     verboseprint("\nAverage min: " + str(avg_min) + " ms")
     verboseprint("Average max: " + str(avg_max) + " ms")
     verboseprint("Average ping: " + str(avg_ping) + " ms")

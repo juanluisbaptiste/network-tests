@@ -15,7 +15,7 @@ def csv_ping_parser(results, csv_file, overall_values):
     with open(csv_file, 'wb') as myfile:
         wr = csv.writer(myfile)
         date = time.strftime("%c")
-        overall_headers = ["Count","Time Elapsed (s)","Min (ms)","Max (ms)","Average (ms)","Packet Loss Count","Packet Loss Rate (%)", "Standard Deviation (ms)"]
+        overall_headers = ["Count","Time Elapsed (s)","Min (ms)","Max (ms)","Average (ms)","Packet Loss Count","Packet Loss Rate (%)", "Standard Deviation (ms)", "Program Version"]
         wr.writerow(overall_headers)
         wr.writerow(overall_values)
         wr.writerow([])
