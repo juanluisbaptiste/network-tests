@@ -21,7 +21,10 @@ import downloadtester
 import csv_parser
 
 tester = downloadtester.DownloadTester()
-version = pkg_resources.require("network-tests")[0].version
+try:
+    version = pkg_resources.require("network-tests")[0].version
+except pkg_resources.DistributionNotFound:
+    version = "dev"
 
 def parse_option():
     parser = argparse.ArgumentParser()

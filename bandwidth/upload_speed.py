@@ -20,7 +20,10 @@ import uploadtester
 import csv_parser
 
 tester = uploadtester.UploadTester()
-version = pkg_resources.require("network-tests")[0].version
+try:
+    version = pkg_resources.require("network-tests")[0].version
+except pkg_resources.DistributionNotFound:
+    version = "dev"
 
 def parse_option():
     parser = argparse.ArgumentParser()
