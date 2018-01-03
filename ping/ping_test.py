@@ -20,6 +20,7 @@ import ping_parsers
 
 DEFAULT_PING_COUNT = 5
 VERBOSE = True
+
 try:
     version = pkg_resources.require("network-tests")[0].version
 except pkg_resources.DistributionNotFound:
@@ -93,6 +94,7 @@ def main():
     #transmitter.waittime = 10
     transmitter.count = options.count or DEFAULT_PING_COUNT
     ping_results = []
+    scriptDir = os.getcwd()
     hosts = os.path.join(scriptDir, options.pingfile)
     hostsFile = open(hosts, "r")
     lines = hostsFile.readlines()
@@ -139,7 +141,6 @@ def main():
     verboseprint("Standard deviation: " + str(std_deviation) + " ms\n")
 
     if options.outfile:
-        scriptDir = os.getcwd()
         csv_file = os.path.join(scriptDir, options.outfile)
         ping_parsers.csv_ping_parser(ping_results,csv_file,overall)
 
