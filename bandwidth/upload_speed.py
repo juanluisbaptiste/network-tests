@@ -106,10 +106,10 @@ def main():
     verboseprint("\nTest Results:")
     verboseprint("---- -------\n")
     verboseprint("Time Elapsed: " + str(tester.overall_time_elapsed) + " seconds\n")
-    verboseprint("Overall Average download speed: " + str(round(overall_speed*0.000001,2)) + "MB/s - " + str(round(overall_speed*0.000008,2)) + "Mbps")
-    verboseprint("Maximum download speed: " + str(round(max_speed*0.000001,2)) + "MB/s - " + str(round(max_speed*0.000008,2)) + "Mbps")
-    verboseprint("Minimum download speed: " + str(round(min_speed*0.000001,2)) + "MB/s - " + str(round(min_speed*0.000008,2)) + "Mbps")
-    verboseprint("Median download speed: " + str(round(median_speed*0.000001,2)) + "MB/s - " + str(round(median_speed*0.000008,2)) + "Mbps")
+    verboseprint("Overall Average upload speed: " + str(round(overall_speed*0.000001,2)) + "MB/s - " + str(round(overall_speed*0.000008,2)) + "Mbps")
+    verboseprint("Maximum upload speed: " + str(round(max_speed*0.000001,2)) + "MB/s - " + str(round(max_speed*0.000008,2)) + "Mbps")
+    verboseprint("Minimum upload speed: " + str(round(min_speed*0.000001,2)) + "MB/s - " + str(round(min_speed*0.000008,2)) + "Mbps")
+    verboseprint("Median upload speed: " + str(round(median_speed*0.000001,2)) + "MB/s - " + str(round(median_speed*0.000008,2)) + "Mbps")
     verboseprint("Standard Deviation: " + str(round(deviation*0.000001,2)) + "MB/s - " + str(round(deviation*0.000008,2)) + "Mbps\n")
 
     #Create csv with test results
