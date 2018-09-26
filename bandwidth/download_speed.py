@@ -43,15 +43,20 @@ def parse_option():
 
     return parser.parse_args()
 
+
 def signal_handler(signal, frame):
         print '\n\nTest cancelled!\n'
         tester.cleanup()
         sys.exit(0)
+
+
 signal.signal(signal.SIGINT, signal_handler)
+
+
 
 def main():
     options = parse_option()
-    #global functions.VERBOSE
+    # global functions.VERBOSE
     if options.silent:
         tester.VERBOSE = False
 
@@ -65,11 +70,11 @@ def main():
     else:
         verboseprint = lambda *a: None      # do-nothing function
 
-    #Set download location
+    # Set download location
     location = options.location or tester.DEFAULT_LOCATION
-    #Print the program version
+    # Print the program version
     verboseprint(os.path.basename(__file__) + ' ' + version + '\n')
-    #Overwrite with custom URL
+    # Overwrite with custom URL
     if not options.url:
         verboseprint('Location: ' + location)
         url = tester.get_location(location)
@@ -82,7 +87,7 @@ def main():
 
     results = []
     n = 0
-    #Do tests
+    # Do tests
     while (n < num_tests):
        verboseprint ('Test #' + str(n + 1) + ': ')
        result = tester.download_file(url)
@@ -107,7 +112,7 @@ def main():
     verboseprint("Median download speed: " + str(round(median_speed*0.000001,2)) + "MB/s - " + str(round(median_speed*0.000008,2)) + "Mbps")
     verboseprint("Standard Deviation: " + str(round(deviation*0.000001,2)) + "MB/s - " + str(round(deviation*0.000008,2)) + "Mbps\n")
 
-    #Create csv with test results
+    # Create csv with test results
     if options.outfile:
         scriptDir = os.getcwd()
         csv_file = os.path.join(scriptDir, options.outfile)
@@ -116,6 +121,7 @@ def main():
         overall_values = [date,url,filesize, round(min_speed*0.000001,2), round(min_speed*0.000001,2), round(max_speed*0.000001,2), round(max_speed*0.000008,2),round(overall_speed*0.000001,2), round(overall_speed*0.000001,2), round(median_speed*0.000001,2), round(median_speed*0.000008,2), round(deviation*0.000001,2), round(deviation*0.000008,2), "v" + version]
         overall = (overall_headers,overall_values)
         csv_parser.csv_parser(results,csv_file, overall, filesize)
+
 
 if __name__ == "__main__":
     sys.exit(main())
