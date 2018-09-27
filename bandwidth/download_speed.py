@@ -26,6 +26,7 @@ try:
 except pkg_resources.DistributionNotFound:
     version = "dev"
 
+
 def parse_option():
     parser = argparse.ArgumentParser()
     parser.add_argument(
@@ -65,7 +66,7 @@ def main():
             # Print each argument separately so caller doesn't need to
             # stuff everything to be printed into a single string
             for arg in args:
-               print arg,
+                print arg,
             print
     else:
         verboseprint = lambda *a: None      # do-nothing function
@@ -74,6 +75,7 @@ def main():
     location = options.location or tester.DEFAULT_LOCATION
     # Print the program version
     verboseprint(os.path.basename(__file__) + ' ' + version + '\n')
+
     # Overwrite with custom URL
     if not options.url:
         verboseprint('Location: ' + location)
@@ -95,19 +97,19 @@ def main():
     n = 0
     # Do tests
     while (n < num_tests):
-       verboseprint ('Test #' + str(n + 1) + ': ')
-       result = tester.download_file(url)
-       filesize = round(tester.get_filesize()/1024/1024,2)
-       results.append(result)
-       verboseprint("\nDownloaded file size: " + str(filesize) + " MB")
-       verboseprint("\nAverage download speed: " + str(round(result*0.000001,2)) + " MB/s - " + str(round(result*0.000008,2)) + " Mbps\n")
-       n += 1
+        verboseprint ('Test #' + str(n + 1) + ': ')
+        result = tester.download_file(url)
+        filesize = round(tester.get_filesize()/1024/1024,2)
+        results.append(result)
+        verboseprint("\nDownloaded file size: " + str(filesize) + " MB")
+        verboseprint("\nAverage download speed: " + str(round(result*0.000001,2)) + " MB/s - " + str(round(result*0.000008,2)) + " Mbps\n")
+        n += 1
 
     overall_speed = sum(results)/n
     median_speed = statistics.median(results)
     deviation = numpy.std(results)
-    min_speed = min (results)
-    max_speed = max (results)
+    min_speed = min(results)
+    max_speed = max(results)
     verboseprint("\nTest Results:")
     verboseprint("---- -------\n")
     verboseprint("Time Elapsed: " + str(tester.overall_time_elapsed) + " seconds\n")
@@ -122,10 +124,10 @@ def main():
         scriptDir = os.getcwd()
         csv_file = os.path.join(scriptDir, options.outfile)
         date = time.strftime("%c")
-        overall_headers = ["Date","URL","Size (MB)","Min (MB/s)","Min (Mbps)","Max (MB/s)","Max (Mbps)","Average (MB/s)", "Average (Mbps)", "Median (MB/sec)", "Median (Mbps)", "Deviation (MB/sec)", "Deviation (Mbps)", "Program Version"]
-        overall_values = [date,url,filesize, round(min_speed*0.000001,2), round(min_speed*0.000001,2), round(max_speed*0.000001,2), round(max_speed*0.000008,2),round(overall_speed*0.000001,2), round(overall_speed*0.000001,2), round(median_speed*0.000001,2), round(median_speed*0.000008,2), round(deviation*0.000001,2), round(deviation*0.000008,2), "v" + version]
-        overall = (overall_headers,overall_values)
-        csv_parser.csv_parser(results,csv_file, overall, filesize)
+        overall_headers = ["Date", "URL", "Size (MB)", "Min (MB/s)", "Min (Mbps)", "Max (MB/s)", "Max (Mbps)", "Average (MB/s)", "Average (Mbps)", "Median (MB/sec)", "Median (Mbps)", "Deviation (MB/sec)", "Deviation (Mbps)", "Program Version"]
+        overall_values = [date, url, filesize, round(min_speed*0.000001,2), round(min_speed*0.000001,2), round(max_speed*0.000001,2), round(max_speed*0.000008,2),round(overall_speed*0.000001,2), round(overall_speed*0.000001,2), round(median_speed*0.000001,2), round(median_speed*0.000008,2), round(deviation*0.000001,2), round(deviation*0.000008,2), "v" + version]
+        overall = (overall_headers, overall_values)
+        csv_parser.csv_parser(results, csv_file, overall, filesize)
 
 
 if __name__ == "__main__":
