@@ -81,6 +81,12 @@ def main():
     else:
         url = options.url
     verboseprint('URL: ' + url)
+
+    # Check that output dir exists
+    if not os.path.exists(os.path.dirname(options.outfile)):
+        print "\nERROR: Output file destination directory does not exist: " + os.path.dirname(options.outfile) + " \n"
+        sys.exit(1)
+
     num_tests = int(options.count or tester.DEFAULT_DOWNLOAD_COUNT)
     verboseprint('Total Tests: ' + str(num_tests))
     print
