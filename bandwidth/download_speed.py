@@ -17,6 +17,7 @@ import signal
 import statistics
 import sys
 import time
+import urllib2
 import downloadtester
 import csv_parser
 
@@ -81,6 +82,11 @@ def main():
         verboseprint('Location: ' + location)
         url = tester.get_location(location)
     else:
+        try:
+            ret = urllib2.urlopen(options.url)
+        except:
+            print "ERROR: Download URL does not exist."
+            sys.exit(1)
         url = options.url
     verboseprint('URL: ' + url)
 
