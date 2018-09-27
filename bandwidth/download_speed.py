@@ -55,7 +55,6 @@ def signal_handler(signal, frame):
 signal.signal(signal.SIGINT, signal_handler)
 
 
-
 def main():
     options = parse_option()
     # global functions.VERBOSE
@@ -91,7 +90,7 @@ def main():
     verboseprint('URL: ' + url)
 
     # Check that output dir exists
-    if not os.path.exists(os.path.dirname(options.outfile)):
+    if options.outfile and not os.path.exists(os.path.dirname(options.outfile)):
         print "\nERROR: Output file destination directory does not exist: " + os.path.dirname(options.outfile) + " \n"
         sys.exit(1)
 
