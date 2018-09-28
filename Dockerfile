@@ -14,8 +14,8 @@ RUN curl -s https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add -
     apt update && apt install -y nodejs && \
     npm install @sitespeed.io/throttle -g
 RUN  wget https://codeload.github.com/juanluisbaptiste/network-tests/tar.gz/v${VERSION} -O v${VERSION}.tar.gz
-RUN pwd;ls -l
 RUN tar zxvf /v${VERSION}.tar.gz -C /opt
+
 WORKDIR /opt/network-tests-${VERSION}
 RUN python setup.py install
 #ENV PATH=$PATH:/ping:/bandwidth
