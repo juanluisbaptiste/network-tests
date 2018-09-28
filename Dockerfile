@@ -1,7 +1,7 @@
 #FROM python:2.7.13
 FROM ubuntu:latest
 MAINTAINER Juan Luis Baptiste <juan.baptiste@gmail.com>
-ENV VERSION 0.1
+ENV VERSION 0.1.2
 
 # COPY ping /ping
 # COPY bandwidth /bandwidth
