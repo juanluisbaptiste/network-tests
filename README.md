@@ -33,7 +33,7 @@ Script for doing download speed tests and optionally save results on a csv file.
 Script for doing upload speed tests and optionally save results on a csv file.
 
 ## Docker image
-There is a docker image available to run the scripts. It also includes throttle different network conditions can be emulated while testing. To launch it:
+There is a docker image available to run the scripts. It also includes [throttle](https://www.sitespeed.io/documentation/throttle/), so different network conditions can be emulated while testing. To launch it:
 
     sudo modprobe ifb numifbs=1
     sudo docker pull juanluisbaptiste/network-tests
