@@ -26,6 +26,7 @@ try:
 except pkg_resources.DistributionNotFound:
     version = "dev"
 
+
 def parse_option():
     parser = argparse.ArgumentParser()
     parser.add_argument(
@@ -43,37 +44,48 @@ def parse_option():
 
     return parser.parse_args()
 
+
 def file_len(fname):
     with open(fname) as f:
         for i, l in enumerate(f):
             pass
     return i + 1
 
+
 def signal_handler(signal, frame):
         print ("\n\nTest cancelled!\n")
         sys.exit(0)
+
+
 signal.signal(signal.SIGINT, signal_handler)
+
 
 def get_min_avg(results):
     return get_avg(results,'rtt_min')
 
+
 def get_max_avg(results):
     return get_avg(results,'rtt_max')
+
 
 def get_ping_avg(results):
     return get_avg(results,'rtt_avg')
 
+
 def get_packetlostcount_avg(results):
     return get_avg(results,'packet_loss_count')
 
+
 def get_packetlostrate_avg(results):
     return get_avg(results,'packet_loss_rate')
+
 
 def get_avg(results,metric):
     val = 0
     for result in results:
         val += getattr(result[1],metric)
     return round(val/len(results),2)
+
 
 def get_std_deviation(results):
     vals = []
