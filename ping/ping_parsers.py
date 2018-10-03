@@ -14,8 +14,7 @@ import time
 def csv_ping_parser(results, csv_file, overall_values):
     with open(csv_file, 'wb') as myfile:
         wr = csv.writer(myfile)
-        date = time.strftime("%c")
-        overall_headers = ["Count",
+        overall_headers = ["Date",
                            "Time Elapsed (s)",
                            "Min (ms)",
                            "Max (ms)",

@@ -104,6 +104,8 @@ def main():
     if options.silent:
         VERBOSE = False
     verboseprint = print if VERBOSE else lambda *a, **k: None
+    date = time.strftime("%c")
+
 
     transmitter = pingparsing.PingTransmitter()
     transmitter.interface = options.interface
@@ -157,7 +159,8 @@ def main():
     avg_plc = get_packetlostcount_avg(ping_results)
     avg_plr = get_packetlostrate_avg(ping_results)
     std_deviation = get_std_deviation(ping_results)
-    overall = (options.count,
+    overall = (date,
+               options.count,
                time_elapsed,
                avg_min,
                avg_max,
