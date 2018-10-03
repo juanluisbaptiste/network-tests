@@ -64,15 +64,15 @@ class DownloadTester():
                         dl_speed = self.__size/time_elapsed
                         self.overall_time_elapsed = time_elapsed
 
-            if self.VERBOSE:
-                # Convert to MB/s and Mbps for printing
-                sys.stdout.write("\r[%s%s] %s MB/s - %s Mbps" %
-                                 ('=' * done, ' ' * (50-done),
-                                  round(dl_speed*common.SPEED_MB_SEC, 2),
-                                  round(dl_speed*common.SPEED_MBIT_SEC, 2)))
-                sys.stdout.flush()
+                    if self.VERBOSE:
+                        # Convert to MB/s and Mbps for printing
+                        sys.stdout.write("\r[%s%s] %s MB/s - %s Mbps" %
+                                         ('=' * done, ' ' * (50-done),
+                                          round(dl_speed*common.SPEED_MB_SEC, 2),
+                                          round(dl_speed*common.SPEED_MBIT_SEC, 2)))
+                        sys.stdout.flush()
 
-        self.cleanup()
+                self.cleanup()
         return dl_speed
 
     def cleanup(self):
