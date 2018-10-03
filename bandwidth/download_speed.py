@@ -130,7 +130,7 @@ def main():
         csv_file = os.path.join(scriptDir, options.outfile)
         date = time.strftime("%c")
         overall_headers = ["Date", "URL", "Size (MB)", "Min (MB/s)", "Min (Mbps)", "Max (MB/s)", "Max (Mbps)", "Average (MB/s)", "Average (Mbps)", "Median (MB/sec)", "Median (Mbps)", "Deviation (MB/sec)", "Deviation (Mbps)", "Program Version"]
-        overall_values = [date, url, filesize, round(min_speed*0.000001,2), round(min_speed*0.000001,2), round(max_speed*0.000001,2), round(max_speed*0.000008,2),round(overall_speed*0.000001,2), round(overall_speed*0.000001,2), round(median_speed*0.000001,2), round(median_speed*0.000008,2), round(deviation*0.000001,2), round(deviation*0.000008,2), "v" + version]
+        overall_values = [date, url, filesize, round(min_speed*0.000001,2), round(min_speed*0.000008,2), round(max_speed*0.000001,2), round(max_speed*0.000008,2),round(overall_speed*0.000001,2), round(overall_speed*0.000008,2), round(median_speed*0.000001,2), round(median_speed*0.000008,2), round(deviation*0.000001,2), round(deviation*0.000008,2), "v" + version]
         overall = (overall_headers, overall_values)
         csv_parser.csv_parser(results, csv_file, overall, filesize)
 
