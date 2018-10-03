@@ -9,6 +9,7 @@ The scripts have the following features:
 - For bandwidth measurement in both Mbps and MB/s.
 - Overall statistics with metrics like minimum, maximum and average speeds, and standard deviation.
 - Save the results to a file with CSV format.
+- Docker image that includes all the scripts and dependencies.
 
 ## Included scripts
 
