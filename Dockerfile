@@ -1,6 +1,6 @@
 FROM debian:stretch-slim
 MAINTAINER Juan Luis Baptiste <juan.baptiste@gmail.com>
-ENV VERSION 0.1.2
+ENV VERSION 0.1.3
 
 # COPY ping /ping
 # COPY bandwidth /bandwidth
