@@ -33,6 +33,16 @@ Script for doing download speed tests and optionally save results on a csv file.
 
 Script for doing upload speed tests and optionally save results on a csv file.
 
+## Installation
+
+    git clone https://github.com/juanluisbaptiste/network-tests.git
+    cd network-tests
+    sudo python setup.py install
+
+## Usage
+
+See each script README file for detailed instructions.
+
 ## Docker image
 There is a docker image available to run the scripts. It also includes [throttle](https://www.sitespeed.io/documentation/throttle/), so different network conditions can be emulated while testing. To launch it:
 
