@@ -136,10 +136,10 @@ def main():
                 ping_result = [line, ping_parser]
                 ping_results.append(ping_result)
                 verboseprint("Min: {0} ms \
-                             Max: {1} ms \
-                             Average: {2} ms \
-                             Packet Loss Count: {3} \
-                             Packet Loss Rate: {4}%\n".
+ Max: {1} ms \
+ Average: {2} ms \
+ Packet Loss Count: {3} \
+ Packet Loss Rate: {4}%\n".
                              format(ping_parser.rtt_min,
                                     ping_parser.rtt_max,
                                     ping_parser.rtt_avg,
