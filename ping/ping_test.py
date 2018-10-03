@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+# !/usr/bin/env python
 # encoding: utf-8
 
 """
@@ -30,17 +30,21 @@ except pkg_resources.DistributionNotFound:
 def parse_option():
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "-c", "--count", required=False, help="Ping count. Default: " + str(DEFAULT_PING_COUNT))
+        "-c", "--count", required=False, help="Ping count. \
+        Default: " + str(DEFAULT_PING_COUNT))
     parser.add_argument(
         "-f", "--pingfile", required=True, help="List of hosts to ping")
     parser.add_argument(
-        "-o", "--outfile", required=False, help="Destination file for ping results")
+        "-o", "--outfile", required=False, help="Destination file for ping \
+        results")
     parser.add_argument(
         "-I", dest="interface", help="Network interface to use for pinging")
     parser.add_argument(
-        "-s", "--silent", action="store_true", help="Don't print verbose output from the test")
+        "-s", "--silent", action="store_true", help="Don't print verbose \
+        output from the test")
     parser.add_argument(
-        "-V", "--version", action="version", version="Program Version: " + version, help="Print program version")
+        "-V", "--version", action="version", version="Program \
+        Version: " + version, help="Print program version")
 
     return parser.parse_args()
 
@@ -131,7 +135,16 @@ def main():
                 ping_parser.parse(result)
                 ping_result = [line, ping_parser]
                 ping_results.append(ping_result)
-                verboseprint("Min: {0} ms Max: {1} ms Average: {2} ms Packet Loss Count: {3} Packet Loss Rate: {4}%\n".format(ping_parser.rtt_min,ping_parser.rtt_max,ping_parser.rtt_avg,ping_parser.packet_loss_count,ping_parser.packet_loss_rate))
+                verboseprint("Min: {0} ms \
+                             Max: {1} ms \
+                             Average: {2} ms \
+                             Packet Loss Count: {3} \
+                             Packet Loss Rate: {4}%\n".
+                             format(ping_parser.rtt_min,
+                                    ping_parser.rtt_max,
+                                    ping_parser.rtt_avg,
+                                    ping_parser.packet_loss_count,
+                                    ping_parser.packet_loss_rate))
             except AttributeError as e:
                 verboseprint("Non-existent Host: " + line + "\n")
             n += 1
@@ -144,7 +157,15 @@ def main():
     avg_plc = get_packetlostcount_avg(ping_results)
     avg_plr = get_packetlostrate_avg(ping_results)
     std_deviation = get_std_deviation(ping_results)
-    overall = (options.count, time_elapsed, avg_min, avg_max, avg_ping, avg_plc, avg_plr, std_deviation, "v" + version)
+    overall = (options.count,
+               time_elapsed,
+               avg_min,
+               avg_max,
+               avg_ping,
+               avg_plc,
+               avg_plr,
+               std_deviation,
+               "v" + version)
     verboseprint("\nAverage min: " + str(avg_min) + " ms")
     verboseprint("Average max: " + str(avg_max) + " ms")
     verboseprint("Average ping: " + str(avg_ping) + " ms")
@@ -154,7 +175,9 @@ def main():
 
     if options.outfile:
         csv_file = os.path.join(scriptDir, options.outfile)
-        ping_parsers.csv_ping_parser(ping_results, csv_file,overall)
+        ping_parsers.csv_ping_parser(ping_results,
+                                     csv_file,
+                                     overall)
 
     return 0
 

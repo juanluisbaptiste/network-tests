@@ -18,6 +18,8 @@ import statistics
 import sys
 import time
 import urllib2
+
+import common
 import downloadtester
 import csv_parser
 
@@ -119,8 +121,8 @@ def main():
         results.append(result)
         verboseprint("\nDownloaded file size: " + str(filesize) + " MB")
         verboseprint("\nAverage download speed: " +
-                     str(round(result*0.000001, 2)) + " MB/s - " +
-                     str(round(result*0.000008, 2)) + " Mbps\n")
+                     str(round(result*common.SPEED_MB_SEC, 2)) + " MB/s - " +
+                     str(round(result*common.SPEED_MBIT_SEC, 2)) + " Mbps\n")
         n += 1
 
     overall_speed = sum(results)/n
@@ -133,20 +135,21 @@ def main():
     verboseprint("Time Elapsed: " + str(tester.overall_time_elapsed) +
                  " seconds\n")
     verboseprint("Overall Average Download Speed: " +
-                 str(round(overall_speed*0.000001, 2)) + "MB/s - " +
-                 str(round(overall_speed*0.000008, 2)) + "Mbps")
+                 str(round(overall_speed*common.SPEED_MB_SEC, 2)) +
+                 "MB/s - " +
+                 str(round(overall_speed*common.SPEED_MBIT_SEC, 2)) + "Mbps")
     verboseprint("Maximum download speed: " +
-                 str(round(max_speed*0.000001, 2)) + "MB/s - " +
-                 str(round(max_speed*0.000008, 2)) + "Mbps")
+                 str(round(max_speed*common.SPEED_MB_SEC, 2)) + "MB/s - " +
+                 str(round(max_speed*common.SPEED_MBIT_SEC, 2)) + "Mbps")
     verboseprint("Minimum download speed: " +
-                 str(round(min_speed*0.000001, 2)) + "MB/s - " +
-                 str(round(min_speed*0.000008, 2)) + "Mbps")
+                 str(round(min_speed*common.SPEED_MB_SEC, 2)) + "MB/s - " +
+                 str(round(min_speed*common.SPEED_MBIT_SEC, 2)) + "Mbps")
     verboseprint("Median download speed: " +
-                 str(round(median_speed*0.000001, 2)) + "MB/s - " +
-                 str(round(median_speed*0.000008, 2)) + "Mbps")
+                 str(round(median_speed*common.SPEED_MB_SEC, 2)) + "MB/s - " +
+                 str(round(median_speed*common.SPEED_MBIT_SEC, 2)) + "Mbps")
     verboseprint("Standard Deviation: " +
-                 str(round(deviation*0.000001, 2)) + "MB/s - " +
-                 str(round(deviation*0.000008, 2)) + "Mbps\n")
+                 str(round(deviation*common.SPEED_MB_SEC, 2)) + "MB/s - " +
+                 str(round(deviation*common.SPEED_MBIT_SEC, 2)) + "Mbps\n")
 
     # Create csv with test results
     if options.outfile:
@@ -170,16 +173,17 @@ def main():
         overall_values = [date,
                           url,
                           filesize,
-                          round(min_speed*0.000001, 2),
-                          round(min_speed*0.000008, 2),
-                          round(max_speed*0.000001, 2),
-                          round(max_speed*0.000008, 2),
-                          round(overall_speed*0.000001, 2),
-                          round(overall_speed*0.000008, 2),
-                          round(median_speed*0.000001, 2),
-                          round(median_speed*0.000008, 2),
-                          round(deviation*0.000001, 2),
-                          round(deviation*0.000008, 2), "v" + version]
+                          round(min_speed*common.SPEED_MB_SEC, 2),
+                          round(min_speed*common.SPEED_MBIT_SEC, 2),
+                          round(max_speed*common.SPEED_MB_SEC, 2),
+                          round(max_speed*common.SPEED_MBIT_SEC, 2),
+                          round(overall_speed*common.SPEED_MB_SEC, 2),
+                          round(overall_speed*common.SPEED_MBIT_SEC, 2),
+                          round(median_speed*common.SPEED_MB_SEC, 2),
+                          round(median_speed*common.SPEED_MBIT_SEC, 2),
+                          round(deviation*common.SPEED_MB_SEC, 2),
+                          round(deviation*common.SPEED_MBIT_SEC, 2),
+                          "v" + version]
         overall = (overall_headers, overall_values)
         csv_parser.csv_parser(results, csv_file, overall, filesize)
 
