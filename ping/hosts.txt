@@ -8,7 +8,7 @@ www.amazon.com
 www.ebay.com
 www.dell.com
 www.samsung.com
-www.apple-com
+www.apple.com
 www.alibaba.com
 www.nytimes.com
 www.wikipedia.org
