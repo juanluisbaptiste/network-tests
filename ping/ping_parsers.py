@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+# !/usr/bin/env python
 # encoding: utf-8
 
 """
@@ -7,23 +7,46 @@
 
 from __future__ import print_function
 import csv
-import json
 import numpy
 import time
+
 
 def csv_ping_parser(results, csv_file, overall_values):
     with open(csv_file, 'wb') as myfile:
         wr = csv.writer(myfile)
         date = time.strftime("%c")
-        overall_headers = ["Count","Time Elapsed (s)","Min (ms)","Max (ms)","Average (ms)","Packet Loss Count","Packet Loss Rate (%)", "Standard Deviation (ms)", "Program Version"]
+        overall_headers = ["Count",
+                           "Time Elapsed (s)",
+                           "Min (ms)",
+                           "Max (ms)",
+                           "Average (ms)",
+                           "Packet Loss Count",
+                           "Packet Loss Rate (%)",
+                           "Standard Deviation (ms)",
+                           "Program Version"]
         wr.writerow(overall_headers)
         wr.writerow(overall_values)
         wr.writerow([])
-        header = ["Count","Min (ms)", "Max (ms)", "Average (ms)","Std Deviation (ms)","Lost", "% Lost", "Host"]
+        header = ["Count",
+                  "Min (ms)",
+                  "Max (ms)",
+                  "Average (ms)",
+                  "Std Deviation (ms)",
+                  "Lost",
+                  "% Lost",
+                  "Host"]
         wr.writerow(header)
         for result in results:
-            row = [result[1].packet_transmit, result[1].rtt_min,result[1].rtt_max,result[1].rtt_avg,numpy.std(result[1].rtt_avg),result[1].packet_loss_count,result[1].packet_loss_rate,result[0]]
+            row = [result[1].packet_transmit,
+                   result[1].rtt_min,
+                   result[1].rtt_max,
+                   result[1].rtt_avg,
+                   numpy.std(result[1].rtt_avg),
+                   result[1].packet_loss_count,
+                   result[1].packet_loss_rate,
+                   result[0]]
             wr.writerow(row)
+
 
 def print_ping_parser(ping_parser):
     print("packet_transmit: {:d} packets".format(ping_parser.packet_transmit))
@@ -53,13 +76,14 @@ def print_ping_parser(ping_parser):
     print("rtt_mdev:", ping_parser.rtt_mdev)
     print()
 
+
 def calculate_overall_values(results):
     overall_avg_speed = 0
     overall_avg_speed_mbps = 0
     n = 0
     for result in results:
-        overall_avg_speed += round(result[0],2)
-        overall_avg_speed_mbps += round(result[1],2)
+        overall_avg_speed += round(result[0], 2)
+        overall_avg_speed_mbps += round(result[1], 2)
         n += 1
 
-    return (overall_avg_speed,overall_avg_speed_mbps)
+    return (overall_avg_speed, overall_avg_speed_mbps)
