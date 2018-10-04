@@ -9,7 +9,14 @@ import csv
 
 
 def csv_parser(results, csv_file, overall, filesize):
-    overall_speeds = ()
+    """Create csv file from test results.
+
+    Arguments:
+    results -- Array with the test results
+    csv_file --  Destination csv file
+    overall -- Array with overall test data (averages, deviations, etc)
+    filesize -- Size of the file being uploaded/downloaded
+    """
     with open(csv_file, 'wb') as myfile:
         wr = csv.writer(myfile)
         # TODO: Add date of test and test info to file

@@ -12,6 +12,13 @@ import time
 
 
 def csv_ping_parser(results, csv_file, overall_values):
+    """Create csv file from test results.
+
+    Arguments:
+    results -- Array with the test results
+    csv_file --  Destination csv file
+    overall_values -- Array with overall test data (see overall_headers bellow)
+    """
     with open(csv_file, 'wb') as myfile:
         wr = csv.writer(myfile)
         overall_headers = ["Date",
@@ -48,6 +55,11 @@ def csv_ping_parser(results, csv_file, overall_values):
 
 
 def print_ping_parser(ping_parser):
+    """Print results for testing.
+
+    Arguments:
+    ping_parser -- PingParser instance
+    """
     print("packet_transmit: {:d} packets".format(ping_parser.packet_transmit))
     print("packet_receive: {:d} packets".format(ping_parser.packet_receive))
     print("packet_loss_rate: {:.1f} %".format(
@@ -77,6 +89,11 @@ def print_ping_parser(ping_parser):
 
 
 def calculate_overall_values(results):
+    """Calculate overall speeds.
+
+    Arguments:
+    results -- Array with the test results
+    """
     overall_avg_speed = 0
     overall_avg_speed_mbps = 0
     n = 0

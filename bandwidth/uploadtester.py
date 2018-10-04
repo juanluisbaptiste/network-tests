@@ -17,6 +17,8 @@ import common
 
 
 class UploadTester():
+    """Class to do upload speed tests."""
+
     DEFAULT_UPLOAD_COUNT = 1
     VERBOSE = True
     host = ""
@@ -33,6 +35,7 @@ class UploadTester():
     __ftp = ftplib.FTP()
 
     def cleanup(self):
+        """Cleanup after test ends or it is cancelled."""
         try:
             self.__ftp.delete(self.__filename)
             self.__ftp.quit()
@@ -41,6 +44,11 @@ class UploadTester():
         self.__ftp.close()
 
     def upload_file(self, upload_file):
+        """Return file size attribute.
+
+        Arguments:
+        upload_file -- Upload this file to FTP server
+        """
         chunk_size = 8192
         dl_speed = 0
         global n
@@ -77,6 +85,11 @@ class UploadTester():
         return dl_speed
 
     def print_progress(self, chunk):
+        """Print upload progress.
+
+        Arguments:
+        chunk -- Data being uploaded.
+        """
         self.__sizeWritten += len(chunk)
         done = int(50 * self.__sizeWritten / int(self.__filesize))
         time_elapsed = (time.mktime(time.localtime()) - self.__start)

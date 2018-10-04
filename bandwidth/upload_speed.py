@@ -28,6 +28,7 @@ except pkg_resources.DistributionNotFound:
 
 
 def parse_option():
+    """Parse command line arguments."""
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "-c", "--count", required=False, help="Number of uploads to do.\
@@ -58,15 +59,17 @@ def parse_option():
 
 
 def signal_handler(signal, frame):
-        print '\n\nTest cancelled!\n'
-        tester.cleanup()
-        sys.exit(0)
+    """Signal handler."""
+    print '\n\nTest cancelled!\n'
+    tester.cleanup()
+    sys.exit(0)
 
 
 signal.signal(signal.SIGINT, signal_handler)
 
 
 def main():
+    """Run main program."""
     options = parse_option()
     tester.host = options.host
     tester.username = options.username

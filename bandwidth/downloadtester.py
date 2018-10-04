@@ -15,6 +15,8 @@ import common
 
 
 class DownloadTester():
+    """Class to do download speed tests."""
+
     DEFAULT_LOCATION = "use"
     DEFAULT_DOWNLOAD_COUNT = 1
     VERBOSE = True
@@ -31,17 +33,29 @@ class DownloadTester():
     __size = 0
 
     def get_filesize(self):
+        """Return file size attribute."""
         return self.__size
 
     def get_location(self, location=None):
+        """Return test file download location.
+
+        Arguments:
+        url -- Location key for locations array.
+        """
         if location is None:
             location = self.DEFAULT_LOCATION
         return self.locations.get(location)
 
     def get_local_filename(self, url):
+        """Return file name from download URL."""
         return url.split('/')[-1]
 
     def download_file(self, url):
+        """Download a file and save it to a temp directory.
+
+        Arguments:
+        url -- URL to file to download.
+        """
         self.localFilename = self.get_local_filename(url)
         with open('/tmp/' + self.localFilename, 'wb') as f:
             self.__size = 0
@@ -76,5 +90,6 @@ class DownloadTester():
         return dl_speed
 
     def cleanup(self):
+        """Cleanup test, delete downloaded file."""
         # Cleanup
         os.remove("/tmp/" + self.localFilename)

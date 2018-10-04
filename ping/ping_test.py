@@ -28,6 +28,7 @@ except pkg_resources.DistributionNotFound:
 
 
 def parse_option():
+    """Parse command line arguments."""
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "-c", "--count", required=False, help="Ping count. \
@@ -50,6 +51,11 @@ def parse_option():
 
 
 def file_len(fname):
+    """Get file length.
+
+    Arguments:
+    fname -- File name
+    """
     with open(fname) as f:
         for i, l in enumerate(f):
             pass
@@ -57,34 +63,66 @@ def file_len(fname):
 
 
 def signal_handler(signal, frame):
-        print ("\n\nTest cancelled!\n")
-        sys.exit(0)
+    """Signal handler."""
+    print ("\n\nTest cancelled!\n")
+    sys.exit(0)
 
 
 signal.signal(signal.SIGINT, signal_handler)
 
 
 def get_min_avg(results):
+    """Get rtt_min average value.
+
+    Arguments:
+    results -- Test results
+    """
     return get_avg(results, 'rtt_min')
 
 
 def get_max_avg(results):
+    """Get rtt_max average value.
+
+    Arguments:
+    results -- Test results
+    """
     return get_avg(results, 'rtt_max')
 
 
 def get_ping_avg(results):
+    """Get rtt_avg average value.
+
+    Arguments:
+    results -- Test results
+    """
     return get_avg(results, 'rtt_avg')
 
 
 def get_packetlostcount_avg(results):
+    """Get packet_loss_count average value.
+
+    Arguments:
+    results -- Test results
+    """
     return get_avg(results, 'packet_loss_count')
 
 
 def get_packetlostrate_avg(results):
+    """Get packet_duplicate_rate average value.
+
+    Arguments:
+    results -- Test results
+    """
     return get_avg(results, 'packet_loss_rate')
 
 
 def get_avg(results, metric):
+    """Calculate average value for metric.
+
+    Arguments:
+    results -- Test results
+    metric -- metric to calculate the average values
+    """
     val = 0
     for result in results:
         val += getattr(result[1], metric)
@@ -92,6 +130,11 @@ def get_avg(results, metric):
 
 
 def get_std_deviation(results):
+    """Calculate standard deaviation for the results
+
+    Arguments:
+    results -- Test results
+    """
     vals = []
     for result in results:
         vals.append(result[1].rtt_avg)
@@ -99,6 +142,7 @@ def get_std_deviation(results):
 
 
 def main():
+    """Run main program"""
     global VERBOSE
     options = parse_option()
     if options.silent:
