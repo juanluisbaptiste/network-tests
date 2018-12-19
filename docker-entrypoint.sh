@@ -3,6 +3,8 @@ env
 
 . ./functions.sh
 
+#Default test results directory
+mkdir -p tests
 
 # If enabled, start throttle
 if [ "${THROTTLE_ENABLE}" == "yes" ]; then
