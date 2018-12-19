@@ -3,7 +3,7 @@
 DATE=$(date "+%F_%H-%M")
 
 # Defaults
-SILENT_TEST="no"
+SILENT_TEST="${SILENT_TEST:-no}"
 
 # Download test
 DOWNLOAD_TEST_COUNT=${DOWNLOAD_TEST_COUNT:-1}
@@ -33,7 +33,8 @@ THROTTLE_ENABLE="${THROTTLE_ENABLE:-no}"
 #THROTTLE_PROFILE=""
 
 function enable_throttle() {
-  [[ "${SILENT_TEST}" == "yes" ]] && silent=" > /dev/null 2>&1"
+  [[ "${SILENT_TEST}" == "yes" ]] && silent=" &>/dev/null"
+
   # Setup throttle
   [[ ! -z ${THROTTLE_DOWN_SPEED} ]] && THROTTLE_DOWN_SPEED="--down ${THROTTLE_DOWN_SPEED}"
   [[ ! -z ${THROTTLE_UP_SPEED} ]] && THROTTLE_UP_SPEED="--up ${THROTTLE_UP_SPEED}"
