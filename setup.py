@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 setup(
     name="network-tests",
-    version="0.1.3",
+    version="0.1.4",
     #packages=find_packages(),
     packages=['ping','bandwidth'],
     scripts=['ping/ping_test.py','bandwidth/download_speed.py','bandwidth/upload_speed.py','download-tester','upload-tester', 'ping-tester'],
