@@ -40,9 +40,9 @@ function enable_throttle() {
   [[ ! -z ${THROTTLE_RTT} ]] && THROTTLE_RTT="--rtt ${THROTTLE_RTT}"
 
   if [ ! -z ${THROTTLE_PROFILE} ]; then
-    throttle --profile ${THROTTLE_PROFILE} ${silent}
+    eval "throttle --profile ${THROTTLE_PROFILE} ${silent}"
   else
-    throttle ${THROTTLE_UP_SPEED} ${THROTTLE_DOWN_SPEED} ${THROTTLE_RTT} ${silent}
+    eval "throttle ${THROTTLE_UP_SPEED} ${THROTTLE_DOWN_SPEED} ${THROTTLE_RTT} ${silent}"
     [[ $? -gt 0 ]] && echo "ERROR: Cannot setup throttle." && exit 1
   fi
 }
@@ -60,7 +60,7 @@ function do_download_test() {
   fi
 
   # Run test
-  download-tester ${download_test_params}
+  eval "download-tester ${download_test_params}"
 }
 
 function do_upload_test() {
@@ -79,7 +79,7 @@ function do_upload_test() {
   fi
 
   # Run test
-  upload-tester ${upload_test_params}
+  eval "upload-tester ${upload_test_params}"
 }
 
 function do_ping_test() {
