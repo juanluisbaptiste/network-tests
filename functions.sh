@@ -22,16 +22,11 @@ UPLOAD_TEST_SILENT="${SILENT_TEST}"
 UPLOAD_TEST_PASSIVE="${UPLOAD_TEST_PASSIVE:-no}"
 
 # # Ping test
-PING_TEST_ENABLE=no
-# PING_TEST_COUNT=1
-# PING_TEST_FILE=
-# PING_TEST_OUTFILE=
-# PING_TEST_INTERFACE=Default
-# PING_TEST_SILENT=${SILENT_TEST}
-#
-# # Throttle settings
-THROTTLE_ENABLE="${THROTTLE_ENABLE:-no}"
-#THROTTLE_PROFILE=""
+PING_TEST_COUNT=${PING_TEST_COUNT:-1}
+PING_TEST_FILE="ping/hosts.txt"
+PING_TEST_OUTFILE="${PING_TEST_OUTFILE:-tests/ping-test-$DATE.csv}"
+# PING_TEST_INTERFACE="${PING_TEST_INTERFACE:-Default}"
+PING_TEST_SILENT=${SILENT_TEST}
 
 function enable_throttle() {
   [[ "${SILENT_TEST}" == "yes" ]] && silent=" &>/dev/null"
@@ -85,5 +80,18 @@ function do_upload_test() {
 }
 
 function do_ping_test() {
-  echo "TODO !!"
+  ping_test_params=" -c ${PING_TEST_COUNT} \
+                       -f `pwd`/${PING_TEST_FILE} \
+                       -o `pwd`/${PING_TEST_OUTFILE}"
+
+  if [ ! -z ${PING_TEST_INTERFACE} ]; then
+    ping_test_params+=" -I ${PING_TEST_INTERFACE}"
+  fi
+
+  if [ "${PING_TEST_SILENT}" == "yes" ]; then
+    ping_test_params+=" -s"
+  fi
+
+  # Run test
+  eval "ping-tester ${ping_test_params}"
 }
