@@ -15,6 +15,10 @@ if [ "${DOWNLOAD_TEST_ENABLE}" == "yes"  ]; then
 fi
 
 if [ "${UPLOAD_TEST_ENABLE}" == "yes"  ]; then
+  [[ -z ${UPLOAD_TEST_FILE} ]] && echo "ERROR: UPLOAD_TEST_FILE not set.\n" && exit 1
+  [[ -z ${UPLOAD_TEST_HOST} ]] && echo "ERROR: UPLOAD_TEST_HOST not set.\n" && exit 1
+  [[ -z ${UPLOAD_TEST_USER} ]] && echo "ERROR: UPLOAD_TEST_USER not set.\n" && exit 1
+  [[ -z ${UPLOAD_TEST_PASSWORD} ]] && echo "ERROR: UPLOAD_TEST_PASSWORD not set.\n" && exit 1
   do_upload_test
 fi
 
