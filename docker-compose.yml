@@ -1,0 +1,17 @@
+version: '2'
+services:
+  tests:
+      build: .
+      container_name: network-tests
+      volumes:
+        - $PWD:/code
+      # links:
+  #     - postfix
+      # external_links:
+      # - ctecsas-base/postfix:postfix
+      # env_file:
+      command: bash
+      tty: true
+      stdin_open: true
+      cap_add:
+        - NET_ADMIN
