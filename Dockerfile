@@ -15,8 +15,11 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 RUN  wget https://codeload.github.com/juanluisbaptiste/network-tests/tar.gz/v${VERSION} -O v${VERSION}.tar.gz
 RUN tar zxvf /v${VERSION}.tar.gz -C /opt
+COPY tests/* /
+COPY *.sh /
 
 WORKDIR /opt/network-tests-${VERSION}
 RUN python setup.py install
+WORKDIR /
 #ENV PATH=$PATH:/ping:/bandwidth
 CMD ["/bin/bash"]
