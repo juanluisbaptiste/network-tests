@@ -3,7 +3,7 @@
 . ./functions.sh
 
 #Default test results directory
-mkdir -p tests
+mkdir -p ${TESTS_RESULTS_DIR}
 
 # If enabled, start throttle
 if [ "${THROTTLE_ENABLE}" == "yes" ]; then
