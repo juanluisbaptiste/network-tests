@@ -5,15 +5,19 @@
 #Default test results directory
 mkdir -p ${TESTS_RESULTS_DIR}
 
-echo -e "Test count: ${TEST_COUNT}\n"
+echo -e "\nTest count: ${TEST_COUNT}\n"
 
 # If enabled, start throttle
 if [ "${THROTTLE_ENABLE}" == "yes" ]; then
+  echo ""
   enable_throttle
+  echo ""
 fi
 
 if [ "${DOWNLOAD_TEST_ENABLE}" == "yes"  ]; then
+  echo -e "\n* Starting download tests...\n"
   do_download_test
+  echo -e "\n* Done.\n"
 fi
 
 if [ "${UPLOAD_TEST_ENABLE}" == "yes"  ]; then
@@ -21,11 +25,15 @@ if [ "${UPLOAD_TEST_ENABLE}" == "yes"  ]; then
   [[ -z ${UPLOAD_TEST_HOST} ]] && echo "ERROR: UPLOAD_TEST_HOST not set.\n" && exit 1
   [[ -z ${UPLOAD_TEST_USER} ]] && echo "ERROR: UPLOAD_TEST_USER not set.\n" && exit 1
   [[ -z ${UPLOAD_TEST_PASSWORD} ]] && echo "ERROR: UPLOAD_TEST_PASSWORD not set.\n" && exit 1
+  echo -e "\n* Starting upload tests...\n"
   do_upload_test
+  echo -e "\n* Done.\n"
 fi
 
 if [ "${PING_TEST_ENABLE}" == "yes"  ]; then
+  echo -e "\n* Starting ping tests...\n"
   do_ping_test
+  echo -e "\n* Done.\n"
 fi
 
 # Stop throttle
