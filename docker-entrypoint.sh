@@ -5,6 +5,8 @@
 #Default test results directory
 mkdir -p ${TESTS_RESULTS_DIR}
 
+echo -e "Test count: ${TEST_COUNT}\n"
+
 # If enabled, start throttle
 if [ "${THROTTLE_ENABLE}" == "yes" ]; then
   enable_throttle
