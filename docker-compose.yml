@@ -5,6 +5,9 @@ services:
       container_name: network-tests
       volumes:
         - $PWD:/code
+        - $PWD/test_results:/test_results
+      environment:
+        - TEST_COUNT=1
       # links:
   #     - postfix
       # external_links:
