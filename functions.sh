@@ -11,6 +11,8 @@ THROTTLE_ENABLE="${THROTTLE_ENABLE:-no}"
 SEND_RESULTS_EMAIL="no"
 TESTS_RESULTS_DIR="/test_results/"
 TMP_RESULTS_DIR="/tmp/network-tests/"
+COMPRESS_RESULTS="yes"
+COMPRESSED_RESULTS_FILE="/${TESTS_RESULTS_DIR}/network-tests-${DATE}.zip"
 
 # Download test
 DOWNLOAD_TEST_COUNT=${DOWNLOAD_TEST_COUNT:-1}
@@ -99,3 +101,13 @@ function do_ping_test() {
   # Run test
   eval "ping-tester ${ping_test_params}"
 }
+
+function compress_results() {
+  cd ${TMP_RESULTS_DIR}
+  echo -e "\n*Compressing tests results...\n"
+  zip -r ${COMPRESSED_RESULTS_FILE} *
+  [ $? -gt 0 ] && echo -e "- ERROR: Could not compress test results.\n" && exit 1
+
+  echo -e "\n* Done.\n"
+}
+

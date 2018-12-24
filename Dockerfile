@@ -4,7 +4,7 @@ ENV VERSION 0.1.4
 
 RUN apt-get update && \
     apt-get install --no-install-recommends -y apt-transport-https curl wget \
-    gnupg2 iputils-ping python-pip python-setuptools sudo net-tools iproute2 && \
+    gnupg2 iputils-ping python-pip python-setuptools sudo net-tools iproute2 zip && \
     pip install numpy pingparsing requests statistics && \
     rm -rf /var/lib/apt/lists/* && \
     curl -s https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add - && \

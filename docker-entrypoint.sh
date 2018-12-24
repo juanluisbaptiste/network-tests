@@ -43,3 +43,8 @@ if [ "${THROTTLE_ENABLE}" == "yes" ]; then
   throttle --stop
   [[ $? -gt 0 ]] && echo "ERROR: Cannot stop throttle." && exit 1
 fi
+
+if [ "${COMPRESS_RESULTS}" == "yes" ]; then
+  compress_results
+fi
+
