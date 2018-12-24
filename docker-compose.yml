@@ -2,6 +2,7 @@ version: '2'
 services:
   tests:
       build: .
+      image: juanluisbaptiste/network-tests
       container_name: network-tests
       volumes:
         - $PWD:/code
