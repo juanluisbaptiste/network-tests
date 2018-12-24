@@ -4,6 +4,8 @@
 
 #Default test results directory
 mkdir -p ${TESTS_RESULTS_DIR}
+rm -fr ${TMP_RESULTS_DIR}
+mkdir -p ${TMP_RESULTS_DIR}
 
 echo -e "\nTest count: ${TEST_COUNT}\n"
 
