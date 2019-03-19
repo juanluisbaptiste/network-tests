@@ -9,6 +9,7 @@ services:
         - $PWD/test_results:/test_results
       environment:
         - TEST_COUNT=1
+        - DOWNLOAD_TEST_ENABLE=yes
       # links:
   #     - postfix
       # external_links:
