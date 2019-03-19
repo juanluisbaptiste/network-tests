@@ -48,3 +48,6 @@ if [ "${COMPRESS_RESULTS}" == "yes" ]; then
   compress_results
 fi
 
+# if [ "${SEND_RESULTS_EMAIL}" == "yes" ]; then
+#   email_results
+# fi
