@@ -1,11 +1,13 @@
 FROM debian:stretch-slim
 MAINTAINER Juan Luis Baptiste <juan.baptiste@gmail.com>
 ENV VERSION 0.1.4
+ENV PERIODIC_REPORTS no
+ENV CRON_EXPRESSION "\"5 0 1 * *\""
 
 RUN apt-get update && \
     apt-get install --no-install-recommends -y apt-transport-https curl wget \
-    gnupg2 iputils-ping python-pip python-setuptools sudo net-tools iproute2 zip && \
-    pip install numpy pingparsing requests statistics && \
+    gnupg2 iputils-ping python-pip python-setuptools sendemail sudo telnet net-tools iproute2 zip && \
+    pip install numpy pingparsing requests statistics supervisor && \
     rm -rf /var/lib/apt/lists/* && \
     curl -s https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add - && \
     echo deb https://deb.nodesource.com/node_8.x bionic main > /etc/apt/sources.list.d/nodesource.list && \
@@ -18,9 +20,14 @@ RUN  wget https://codeload.github.com/juanluisbaptiste/network-tests/tar.gz/v${V
      rm -f /v${VERSION}.tar.gz
 COPY tests/* /
 COPY *.sh /
+COPY files/docker/etc/supervisord.d/*.ini /etc/supervisord.d/
+COPY files/templates/* /templates/
 
 WORKDIR /opt/network-tests-${VERSION}
-RUN python setup.py install
+RUN python setup.py install && \
+    chmod 755 /*.sh && \
+    mkdir /var/log/supervisor
 WORKDIR /
 #ENV PATH=$PATH:/ping:/bandwidth
-CMD ["/bin/bash"]
+ENTRYPOINT ["/docker-entrypoint.sh"]
+CMD ["bash"]
