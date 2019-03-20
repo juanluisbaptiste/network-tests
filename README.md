@@ -54,7 +54,7 @@ To enable each of the tests (these are also the defaults):
 * UPLOAD_TEST_ENABLE=no
 * PING_TEST_ENABLE=no
 
-* Download test configuration:
+Download test configuration:
 * DOWNLOAD_TEST_COUNT=1
 * DOWNLOAD_TEST_LOCATION=
 * DOWNLOAD_TEST_OUTFILE=
