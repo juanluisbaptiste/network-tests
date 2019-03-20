@@ -15,4 +15,4 @@ UPLOAD_TEST_PASSIVE=yes \
 SILENT_TEST=no \
 PING_TEST_ENABLE=yes \
 PING_TEST_COUNT=${TEST_COUNT} \
-./docker-entrypoint.sh
+./run_test.sh

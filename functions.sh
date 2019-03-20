@@ -1,7 +1,8 @@
 #!/bin/bash
 
 DATE=$(date "+%F_%H-%M")
-
+MONTH=$(LC_ALL=es_CO.utf8 date +%B|sed -e "s/\b\(.\)/\u\1/g") #First letter upper case
+YEAR=$(LC_ALL=es_CO.utf8 date +%Y)
 # Defaults
 SILENT_TEST="${SILENT_TEST:-no}"
 DOWNLOAD_TEST_ENABLE="${DOWNLOAD_TEST_ENABLE:-no}"
@@ -33,6 +34,10 @@ PING_TEST_FILE="/opt/network-tests-0.1.4/ping/hosts.txt"
 PING_TEST_OUTFILE="${PING_TEST_OUTFILE:-ping-test-$DATE.csv}"
 # PING_TEST_INTERFACE="${PING_TEST_INTERFACE:-Default}"
 PING_TEST_SILENT=${SILENT_TEST}
+
+TEMPLATE_FILE="/templates/network-tests_results"
+SMTP_SERVER="postfix"
+SMTP_SUBJECT=${SMTP_SUBJECT:-"Network-tests: Performance Results for ${MONTH} of ${YEAR}"}
 
 function enable_throttle() {
   [[ "${SILENT_TEST}" == "yes" ]] && silent=" &>/dev/null"
@@ -111,3 +116,34 @@ function compress_results() {
   echo -e "\n* Done.\n"
 }
 
+function email_results() {
+  echo "Sending results by email to: ${SMTP_TO}"
+  if [ ! -f ${COMPRESSED_RESULTS_FILE} ]; then
+    echo "ERROR: File to attach not found."
+    sendEmail -f ${SMTP_FROM} -t ${SMTP_FROM} -u "Warning: Cannot find test results file !!" -s ${SMTP_SERVER} -o message-charset=utf8 -m "Could not find test results at: ${COMPRESSED_RESULTS_FILE} ."
+    status=$?
+    if [ ${status} -ne 0 ]; then
+      echo "Could not send error email." >&2 && exit ${status}
+    fi
+    exit 1
+  fi
+
+  content=$(sed -e "s/\${SMTP_TO_NAME}/${SMTP_TO_NAME}/" -e "s/\${MONTH}/${MONTH}/" -e "s/\${YEAR}/${YEAR}/" ${TEMPLATE_FILE})
+  status=$?
+  if [ $status -ne 0 ]; then
+    echo "Could not replace values in template file." >&2 && exit $status
+  fi
+
+  #Send email with file attachment
+  sendEmail -f ${SMTP_FROM} -t ${SMTP_TO} -bcc ${SMTP_BCC} -u ${SMTP_SUBJECT} -s ${SMTP_SERVER} -a ${COMPRESSED_RESULTS_FILE} -m "${content}" -o message-charset=utf8
+  status=$?
+  if [ ${status} -ne 0 ]; then
+    echo "Could not send email." >&2 && exit ${status}
+  fi
+}
+
+function remove_quotes() {
+  temp="${1%\"}"
+  temp="${temp#\"}"
+  echo "$temp"
+}

@@ -1,6 +1,7 @@
 #!/bin/bash
 
 . ./functions.sh
+. /.env
 
 #Default test results directory
 mkdir -p ${TESTS_RESULTS_DIR}
@@ -48,6 +49,6 @@ if [ "${COMPRESS_RESULTS}" == "yes" ]; then
   compress_results
 fi
 
-# if [ "${SEND_RESULTS_EMAIL}" == "yes" ]; then
-#   email_results
-# fi
+if [ "${SEND_RESULTS_EMAIL}" == "yes" ]; then
+  email_results
+fi

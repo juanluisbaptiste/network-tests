@@ -7,11 +7,10 @@ services:
       volumes:
         - $PWD:/code
         - $PWD/test_results:/test_results
-      environment:
-        - TEST_COUNT=1
-        - DOWNLOAD_TEST_ENABLE=yes
-      # links:
-  #     - postfix
+        - '/etc/localtime:/etc/localtime:ro'
+      env_file: .env
+      links:
+      - postfix
       # external_links:
       # - ctecsas-base/postfix:postfix
       # env_file:
@@ -20,3 +19,10 @@ services:
       stdin_open: true
       cap_add:
         - NET_ADMIN
+  postfix:
+    image: juanluisbaptiste/postfix:latest
+    expose:
+      - '25'
+    # See juanluisbaptiste/postfix github page for the contents
+    # and an explanation of credentials-smtp.
+    env_file: ../credentials-smtp.env
