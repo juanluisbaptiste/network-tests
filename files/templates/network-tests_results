@@ -1,0 +1,9 @@
+Hola ${SMTP_TO_NAME},
+
+Este es un correo automatizado que trae como adjunto el resultado de las pruebas
+de velocidad de CTEC del mes de ${MONTH} de ${YEAR}. Si no llegó el
+adjunto, por favor responder a este correo.
+
+Atentamente,
+
+El bot.
