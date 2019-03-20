@@ -1,9 +1,9 @@
-Hola ${SMTP_TO_NAME},
+Hi ${SMTP_TO_NAME},
 
-Este es un correo automatizado que trae como adjunto el resultado de las pruebas
-de velocidad de CTEC del mes de ${MONTH} de ${YEAR}. Si no llegó el
-adjunto, por favor responder a este correo.
+This is an automated email that has the network-tests results for the month
+of ${MONTH} of year ${YEAR} attached to it.
 
-Atentamente,
+Cordially,
 
-El bot.
+The network-tests programs.
+https://github.com/juanluisbaptiste/network-tests
