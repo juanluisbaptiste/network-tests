@@ -99,9 +99,9 @@ And the tests will be run as configured on the .env file.
 
 It also includes [throttle](https://www.sitespeed.io/documentation/throttle/), so different network conditions can be emulated while testing. To launch it:
 
-sudo modprobe ifb numifbs=1
-sudo docker pull juanluisbaptiste/network-tests
-sudo docker run -ti --cap-add NET_ADMIN --name network-tests juanluisbaptiste/network-tests bash
+    sudo modprobe ifb numifbs=1
+    sudo docker pull juanluisbaptiste/network-tests
+    sudo docker run -ti --cap-add NET_ADMIN --name network-tests juanluisbaptiste/network-tests bash
 
 These environment variables controls bandwidth throttling:
 * THROTTLE_ENABLE=no
