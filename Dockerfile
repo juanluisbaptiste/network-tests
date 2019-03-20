@@ -6,7 +6,7 @@ ENV CRON_EXPRESSION "\"5 0 1 * *\""
 
 RUN apt-get update && \
     apt-get install --no-install-recommends -y apt-transport-https curl wget \
-    gnupg2 iputils-ping python-pip python-setuptools sendemail sudo telnet net-tools iproute2 zip && \
+    gnupg2 iputils-ping python-pip python-setuptools rsyslog sendemail sudo telnet net-tools iproute2 zip && \
     pip install numpy pingparsing requests statistics supervisor && \
     rm -rf /var/lib/apt/lists/* && \
     curl -s https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add - && \
