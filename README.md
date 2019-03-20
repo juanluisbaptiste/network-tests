@@ -47,7 +47,8 @@ See each script README file for detailed instructions.
 
 ## Docker image
 There is a docker image available to run the scripts. The tests scripts to run can
-be driven by the following environment variables:
+be driven by the following environment variables (refer to each test program for
+  the usage description of each variable):
 
 To enable each of the tests (these are also the defaults):
 * DOWNLOAD_TEST_ENABLE=yes
