@@ -13,8 +13,9 @@ RUN apt-get update && \
     npm install @sitespeed.io/throttle -g && \
     pip install --upgrade six && \
     rm -rf /var/lib/apt/lists/*
-RUN  wget https://codeload.github.com/juanluisbaptiste/network-tests/tar.gz/v${VERSION} -O v${VERSION}.tar.gz
-RUN tar zxvf /v${VERSION}.tar.gz -C /opt
+RUN  wget https://codeload.github.com/juanluisbaptiste/network-tests/tar.gz/v${VERSION} -O v${VERSION}.tar.gz && \
+     tar zxvf /v${VERSION}.tar.gz -C /opt && \
+     rm -f /v${VERSION}.tar.gz
 COPY tests/* /
 COPY *.sh /
 
