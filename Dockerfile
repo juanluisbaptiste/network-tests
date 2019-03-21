@@ -1,8 +1,6 @@
 FROM debian:stretch-slim
 MAINTAINER Juan Luis Baptiste <juan.baptiste@gmail.com>
 ENV VERSION 0.1.4
-ENV PERIODIC_REPORTS no
-ENV CRON_EXPRESSION "\"5 0 1 * *\""
 
 RUN apt-get update && \
     apt-get install --no-install-recommends -y apt-transport-https cron curl wget \
