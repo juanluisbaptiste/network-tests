@@ -35,7 +35,7 @@ PING_TEST_OUTFILE="${PING_TEST_OUTFILE:-ping-test-$DATE.csv}"
 # PING_TEST_INTERFACE="${PING_TEST_INTERFACE:-Default}"
 PING_TEST_SILENT=${SILENT_TEST}
 
-TEMPLATE_FILE="/templates/network-tests_results"
+TEMPLATE_FILE="${TEMPLATE_FILE:-/templates/network-tests_results}"
 SMTP_SERVER="postfix"
 SMTP_SUBJECT=${SMTP_SUBJECT:-"Network-tests: Performance Results for ${MONTH} of ${YEAR}"}
 
