@@ -108,6 +108,7 @@ It also includes [throttle](https://www.sitespeed.io/documentation/throttle/), s
 
 These environment variables controls bandwidth throttling:
 * THROTTLE_ENABLE=no
+* THROTTLE_PROFILE= (see [throttle](https://www.sitespeed.io/documentation/throttle/) documentation for possible values)
 * THROTTLE_DOWN_SPEED=
 * THROTTLE_UP_SPEED=
 * THROTTLE_RTT=1
