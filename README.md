@@ -79,6 +79,9 @@ Ping test configuration:
 * PING_TEST_INTERFACE=Default
 * PING_TEST_SILENT=no
 
+Global options:
+* SILENT_TEST: Disable output in all tests being run.
+
 There's an example [env file](https://github.com/juanluisbaptiste/network-tests/blob/master/.env.example) you can use with the included [docker-compose file](https://github.com/juanluisbaptiste/network-tests/blob/master/docker-compose.yml).
 
 ### Automated tests configuration:
