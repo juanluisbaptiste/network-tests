@@ -9,3 +9,5 @@ build
 doc-pak
 description-pak
 .env
+files/templates/ctec-mintic
+test_results/
