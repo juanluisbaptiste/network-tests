@@ -135,7 +135,7 @@ function email_results() {
   fi
 
   #Send email with file attachment
-  sendEmail -f ${SMTP_FROM} -t ${SMTP_TO} -bcc ${SMTP_BCC} -u ${SMTP_SUBJECT} -s ${SMTP_SERVER} -a ${COMPRESSED_RESULTS_FILE} -m "${content}" -o message-charset=utf8
+  sendEmail -f "${SMTP_FROM}" -t "${SMTP_TO}" -bcc "${SMTP_BCC}" -u "${SMTP_SUBJECT}" -s "${SMTP_SERVER}" -a "${COMPRESSED_RESULTS_FILE}" -m "${content}" -o message-charset=utf8
   status=$?
   if [ ${status} -ne 0 ]; then
     echo "Could not send email." >&2 && exit ${status}
