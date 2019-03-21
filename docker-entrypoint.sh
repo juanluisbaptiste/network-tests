@@ -12,7 +12,7 @@ if [ ! -z "${CRON_EXPRESSION}" ]; then
 SHELL=/bin/sh
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 
-${CRON_EXPRESSION}  root  /run_test.sh 2>&1 | logger
+${CRON_EXPRESSION}  root  . /.env; /run_test.sh 2>&1 | logger
 EOF
 fi
 
