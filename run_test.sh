@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. ./functions.sh
+. /functions.sh
 . /.env
 
 #Default test results directory
