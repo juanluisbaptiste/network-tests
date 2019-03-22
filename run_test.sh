@@ -1,7 +1,6 @@
 #!/bin/bash
 
 . /functions.sh
-. /.env
 
 #Default test results directory
 mkdir -p ${TESTS_RESULTS_DIR}

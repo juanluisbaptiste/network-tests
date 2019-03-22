@@ -1,8 +1,9 @@
 #!/bin/bash
+. /.env
 
 DATE=$(date "+%F_%H-%M")
-MONTH=$(date +%B|sed -e "s/\b\(.\)/\u\1/g") #First letter upper case
-YEAR=$(date +%Y)
+MONTH=$(LC_ALL=$LC_ALL date +%B|sed -e "s/\b\(.\)/\u\1/g") #First letter upper case
+YEAR=$(LC_ALL=$LC_ALL date +%Y)
 # Defaults
 SILENT_TEST="${SILENT_TEST:-no}"
 DOWNLOAD_TEST_ENABLE="${DOWNLOAD_TEST_ENABLE:-no}"
