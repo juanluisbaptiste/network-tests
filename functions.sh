@@ -38,7 +38,7 @@ PING_TEST_SILENT=${SILENT_TEST}
 
 TEMPLATE_FILE="${TEMPLATE_FILE:-/templates/network-tests_results}"
 SMTP_SERVER="postfix"
-SMTP_SUBJECT=${SMTP_SUBJECT:-"Network-tests: Performance Results for ${MONTH} of ${YEAR}"}
+SMTP_SUBJECT="${SMTP_SUBJECT:-Network-tests: Performance Results for ${MONTH} of ${YEAR}}"
 
 function enable_throttle() {
   [[ "${SILENT_TEST}" == "yes" ]] && silent=" &>/dev/null"
