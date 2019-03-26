@@ -1,7 +1,7 @@
 #!/bin/bash
 
-. /functions.sh
 env > /.env
+. /functions.sh
 
 CRON_EXPRESSION="$(remove_quotes "${CRON_EXPRESSION}" )"
 echo "Configuring automated tests to be run at: ${CRON_EXPRESSION}"
