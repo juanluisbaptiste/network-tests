@@ -168,9 +168,9 @@ def main():
                            "Max (Mbps)",
                            "Average (MB/s)",
                            "Average (Mbps)",
-                           "Median (MB/sec)",
+                           "Median (MB/s)",
                            "Median (Mbps)",
-                           "Deviation (MB/sec)",
+                           "Deviation (MB/s)",
                            "Deviation (Mbps)",
                            "Program Version"]
         overall_values = [date,
