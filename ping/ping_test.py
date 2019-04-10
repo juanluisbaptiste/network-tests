@@ -122,14 +122,17 @@ def get_avg(results, metric):
     results -- Test results
     metric -- metric to calculate the average values
     """
-    val = 0
+
+    vals = 0
     for result in results:
-        val += getattr(result[1], metric)
-    return round(val/len(results), 2)
+        metric_value = getattr(result[1], metric, 0)
+        if (metric_value is not None):
+            vals += metric_value
+    return round(vals/len(results), 2)
 
 
 def get_std_deviation(results):
-    """Calculate standard deaviation for the results
+    """Calculate standard deviation for the results
 
     Arguments:
     results -- Test results
