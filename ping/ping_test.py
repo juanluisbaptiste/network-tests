@@ -8,7 +8,6 @@
 from __future__ import print_function
 
 import argparse
-import numpy
 import os
 import pkg_resources
 import signal
@@ -135,10 +134,11 @@ def get_std_deviation(results):
     Arguments:
     results -- Test results
     """
-    vals = []
+    vals = 0
     for result in results:
-        vals.append(result[1].rtt_avg)
-    return round(numpy.std(vals)/len(results), 2)
+        if (result[1].rtt_mdev is not None):
+            vals += result[1].rtt_mdev
+    return round(vals/len(results), 2)
 
 
 def main():
@@ -149,7 +149,6 @@ def main():
         VERBOSE = False
     verboseprint = print if VERBOSE else lambda *a, **k: None
     date = time.strftime("%c")
-
 
     transmitter = pingparsing.PingTransmitter()
     transmitter.interface = options.interface

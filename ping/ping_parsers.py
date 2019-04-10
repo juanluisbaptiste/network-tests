@@ -22,6 +22,7 @@ def csv_ping_parser(results, csv_file, overall_values):
     with open(csv_file, 'wb') as myfile:
         wr = csv.writer(myfile)
         overall_headers = ["Date",
+                           "Count",
                            "Time Elapsed (s)",
                            "Min (ms)",
                            "Max (ms)",
@@ -47,7 +48,7 @@ def csv_ping_parser(results, csv_file, overall_values):
                    result[1].rtt_min,
                    result[1].rtt_max,
                    result[1].rtt_avg,
-                   numpy.std(result[1].rtt_avg),
+                   result[1].rtt_mdev,
                    result[1].packet_loss_count,
                    result[1].packet_loss_rate,
                    result[0]]
