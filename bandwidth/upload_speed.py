@@ -94,7 +94,7 @@ def main():
     verboseprint(os.path.basename(__file__) + ' v' + version + '\n')
     verboseprint('FTP Host: ' + options.host)
     verboseprint('Username: ' + tester.username)
-    verboseprint('Password: ' + tester.password)
+    verboseprint('Password: ************')
     verboseprint('File: ' + options.uploadfile)
     filesize = round(filesize/1024/1024, 2)  # size in MB
     verboseprint('Size: ' + str(filesize) + "MB")
