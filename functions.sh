@@ -30,7 +30,7 @@ UPLOAD_TEST_PASSIVE="${UPLOAD_TEST_PASSIVE:-no}"
 
 # # Ping test
 PING_TEST_COUNT=${PING_TEST_COUNT:-1}
-PING_TEST_FILE="/opt/network-tests-0.1.4/ping/hosts.txt"
+PING_TEST_FILE="/opt/network-tests-${VERSION}/ping/hosts.txt"
 PING_TEST_OUTFILE="${PING_TEST_OUTFILE:-ping-test-$DATE.csv}"
 # PING_TEST_INTERFACE="${PING_TEST_INTERFACE:-Default}"
 PING_TEST_SILENT=${SILENT_TEST}
