@@ -45,13 +45,13 @@ python ping-tester -f hosts.txt -o results.csv
 Sample CSV output:
 
 ```
-Date,Fri Jul  7 02:48:54 2017
+Date,Count,Time Elapsed (s),Min (ms),Max (ms),Average (ms),Packet Loss Count,Packet Loss Rate (%),Standard Deviation (ms),Program Version
+Wed Apr 10 12:11:58 2019,3,9.0,47.01,64.42,57.26,0.0,0.0,7.62,v0.1.4.1
 
-Count,Lost,% Lost,Min,Max,Average,Host
-5,0,0.0,12.638,21.849,16.211,www.cisco.com
-5,0,0.0,12.013,15.859,13.801,www.google.com
-5,0,0.0,12.422,15.944,13.913,www.adobe.com
-5,0,0.0,78.372,82.801,80.783,www.hotmail.com
-5,0,0.0,53.662,57.935,56.27,www.akamai.com
+Count,Min (ms),Max (ms),Average (ms),Std Deviation (ms),Lost,% Lost,Host
+3,13.677,16.063,15.231,1.104,0,0.0,www.cisco.com
+3,79.889,91.102,84.81,4.691,0,0.0,www.google.com
+3,12.979,61.173,42.389,21.062,0,0.0,www.adobe.com
+3,81.488,89.324,86.615,3.627,0,0.0,www.hotmail.com
 
 ```
