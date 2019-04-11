@@ -115,7 +115,7 @@ def main():
                      str(round(result*common.SPEED_MBIT_SEC, 2)) + "Mbps\n")
         n += 1
 
-    overall_speed = sum(results)/n
+    overall_speed = statistics.mean(results)
     median_speed = statistics.median(results)
     deviation = numpy.std(results)
     min_speed = min(results)
