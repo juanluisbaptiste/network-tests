@@ -1,6 +1,6 @@
 # network-tests
 Collection of python scripts to do multiple network tests like download/upload speeds and network 
-latency (ping). It also calculates statistics like averages medians mins and maxs values and store 
+latency (ping). It also calculates statistics like averages, medians, min and max values and store 
 results in a CSV file.
 
 The scripts have the following features:
