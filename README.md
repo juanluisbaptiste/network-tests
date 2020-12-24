@@ -1,5 +1,7 @@
 # network-tests
-Collection of python scripts to do network tests like download/upload speeds, network latency (ping) and store results in a CSV file with some stats.
+Collection of python scripts to do multiple network tests like download/upload speeds and network 
+latency (ping). It also calculates statistics like averages medians mins and maxs values and store 
+results in a CSV file.
 
 The scripts have the following features:
 
