@@ -17,11 +17,11 @@ import signal
 import statistics
 import sys
 import time
-import urllib2
+from urllib.request import urlopen
 
 import common
-import downloadtester
-import csv_parser
+from . import downloadtester
+from . import csv_parser
 
 tester = downloadtester.DownloadTester()
 try:
@@ -58,7 +58,7 @@ def parse_option():
 
 def signal_handler(signal, frame):
         """Signal handler."""
-        print '\n\nTest cancelled!\n'
+        print ('\n\nTest cancelled!\n')
         tester.cleanup()
         sys.exit(0)
 
@@ -78,7 +78,7 @@ def main():
             # Print each argument separately so caller doesn't need to
             # stuff everything to be printed into a single string
             for arg in args:
-                print arg,
+                print (arg),
             print
     else:
         verboseprint = lambda *a: None      # do-nothing function
@@ -96,7 +96,7 @@ def main():
         try:
             urllib2.urlopen(options.url)
         except Exception:
-            print "ERROR: Download URL does not exist."
+            print ("ERROR: Download URL does not exist.")
             sys.exit(1)
         url = options.url
     verboseprint('URL: ' + url)
@@ -106,8 +106,8 @@ def main():
         options.outfile and not
         os.path.exists(os.path.dirname(options.outfile))
        ):
-        print "\nERROR: Output file destination directory does not \
-        exist: " + os.path.dirname(options.outfile) + " \n"
+        print ("\nERROR: Output file destination directory does not \
+        exist: " + os.path.dirname(options.outfile) + " \n")
         sys.exit(1)
 
     num_tests = int(options.count or tester.DEFAULT_DOWNLOAD_COUNT)

@@ -15,7 +15,8 @@ import sys
 import time
 
 import pingparsing
-import ping_parsers
+from . import ping_parsers
+from pprint import pprint
 
 DEFAULT_PING_COUNT = 5
 VERBOSE = True

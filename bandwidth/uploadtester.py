@@ -57,9 +57,9 @@ class UploadTester():
         self.__ftp.connect(self.host, 21)
         try:
             self.__ftp.login(self.username, self.password)
-        except ftplib.error_perm, e:
+        except ftplib.error_perm as e:
             if "530 Login authentication failed" in e:
-                print "ERROR: Bad username or password."
+                print ("ERROR: Bad username or password.")
                 print
                 sys.exit(1)
         # Set passive mode
@@ -77,7 +77,7 @@ class UploadTester():
             if e.errno != errno.ECONNRESET:
                 raise  # Not error we are looking for
             # pass
-            print "ERROR: Got connection reset, retring upload..."
+            print ("ERROR: Got connection reset, retring upload...")
             n = n + 1
         time_elapsed = (time.mktime(time.localtime()) - self.__start)
         self.overall_time_elapsed = time_elapsed

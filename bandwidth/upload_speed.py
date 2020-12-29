@@ -17,8 +17,8 @@ import sys
 import time
 
 import common
-import csv_parser
-import uploadtester
+from . import csv_parser
+from . import uploadtester
 
 tester = uploadtester.UploadTester()
 try:
@@ -60,7 +60,7 @@ def parse_option():
 
 def signal_handler(signal, frame):
     """Signal handler."""
-    print '\n\nTest cancelled!\n'
+    print ('\n\nTest cancelled!\n')
     tester.cleanup()
     sys.exit(0)
 
@@ -85,7 +85,7 @@ def main():
             # Print each argument separately so caller doesn't need to
             # stuff everything to be printed into a single string
             for arg in args:
-                print arg,
+                print (arg),
             print
     else:
         verboseprint = lambda *a: None      # do-nothing function
